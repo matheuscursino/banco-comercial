@@ -307,11 +307,20 @@
 
           var init = { method: "POST", body: formData };
 
-          fetch("atualizar/atualizar", init).then((response) =>
-            response.json().then((data) => {
-              console.log(data);
-            })
-          );
+          fetch("atualizar/atualizar", init).then((response) => {
+            if (response.status == 200) {
+              conteudo.style.display = "none";
+              all.insertAdjacentHTML(
+                "afterBegin",
+                "<div class='notification is-success'> <button onclick='this.parentNode.remove()' class='delete'></button> O nome do cliente foi alterado com sucesso! <strong> Clique <a href='/bancorm/cliente/consultar'>aqui</a> para verificar o seu novo nome.  </div>"
+              );
+            } else {
+              all.insertAdjacentHTML(
+                "afterBegin",
+                "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Aconteceu algum erro ao fazer a requisição.</div>"
+              );
+            }
+          });
         case 2:
           return;
       }
