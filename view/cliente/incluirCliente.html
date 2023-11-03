@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Incluir cliente</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../view/images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../view/images/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../view/images/site.webmanifest" />
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+        font-family: "Arial";
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      form {
+        width: 80%;
+        height: auto;
+        margin: auto;
+        text-align: left;
+      }
+
+      .notification {
+        margin-top: 20px;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      label {
+        margin-left: 10px;
+      }
+
+      h1 {
+        margin-top: 20px;
+      }
+
+      @media screen and (max-width: 1024px) {
+        .navbar-dropdown .is-active {
+          display: block;
+        }
+        .navbar-dropdown:not(.is-active) {
+          display: none;
+        }
+      }
+
+      .box {
+        width: 80%;
+        margin: auto;
+      }
+
+      button {
+        margin-top: 10px;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar is-light">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/bancorm">
+          <img src="../view/images/favicon-32x32.png" width="32" height="32" />
+        </a>
+        <div
+          id="burger"
+          class="navbar-burger"
+          data-target="navbarExampleTransparentExample"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <div id="navbarExampleTransparentExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="/bancorm"> Home </a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link"> Cliente </a>
+            <div class="navbar-dropdown is-boxed">
+              <a class="navbar-item" href="/bancorm/cliente/incluir">
+                Incluir
+              </a>
+              <a class="navbar-item" href="/bancorm/cliente/atualizar">
+                Atualizar
+              </a>
+              <a class="navbar-item" href="/bancorm/cliente/consultar">
+                Consultar
+              </a>
+              <a class="navbar-item" href="/bancorm/cliente/listar"> Listar </a>
+              <a class="navbar-item" href="/bancorm/cliente/deletar">
+                Deletar
+              </a>
+            </div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link"> Conta corrente </a>
+            <div class="navbar-dropdown is-boxed">
+              <a class="navbar-item" href="/bancorm/contacorrente/incluir">
+                Incluir
+              </a>
+              <a class="navbar-item" href="/bancorm/contacorrente/atualizar">
+                Atualizar
+              </a>
+              <a class="navbar-item" href="/bancorm/contacorrente/consultar">
+                Consultar
+              </a>
+              <a class="navbar-item" href="/bancorm/contacorrente/listar">
+                Listar
+              </a>
+              <a class="navbar-item" href="/bancorm/contacorrente/deletar">
+                Deletar
+              </a>
+            </div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link"> Transação </a>
+            <div class="navbar-dropdown is-boxed">
+              <a class="navbar-item" href="/bancorm/transacao/incluir">
+                Incluir
+              </a>
+              <a class="navbar-item" href="/bancorm/transacao/atualizar">
+                Atualizar
+              </a>
+              <a class="navbar-item" href="/bancorm/transacao/consultar">
+                Consultar
+              </a>
+              <a class="navbar-item" href="/bancorm/transacao/listar">
+                Listar
+              </a>
+              <a class="navbar-item" href="/bancorm/transacao/deletar">
+                Deletar
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="content" id="all">
+      <h1>INCLUIR CLIENTE</h1>
+      <div class="box">
+        <form id="formulario">
+          <div class="field">
+            <label class="label">CPF do cliente: </label>
+            <div class="control">
+              <input
+                class="input"
+                placeholder="Digite o cpf do cliente aqui..."
+                type="number"
+                name="cpf"
+                id="cpf"
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Nome do cliente: </label>
+            <div class="control">
+              <input
+                class="input"
+                placeholder="Digite o nome do cliente aqui..."
+                type="text"
+                name="nome"
+                id="nome"
+              />
+            </div>
+          </div>
+
+          <label class="label">Telefone do cliente: </label>
+          <input
+            class="input"
+            placeholder="Digite o telefone do cliente aqui..."
+            type="number"
+            name="telefone"
+            id="telefone"
+          />
+          <br />
+          <button class="button is-link" onclick="enviarForm()" type="submit">
+            Enviar
+          </button>
+          <button class="button is-light is-link" onclick="form.reset()">
+            Limpar
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script>
+    var botaoBurger = document.getElementById("burger");
+
+    botaoBurger.addEventListener("click", (e) => {
+      const target = botaoBurger.dataset.target;
+      const eTarget = document.getElementById(target);
+
+      botaoBurger.classList.toggle("is-active");
+      eTarget.classList.toggle("is-active");
+    });
+
+    const allDropdowns = document.querySelectorAll(".navbar-item.has-dropdown");
+
+    allDropdowns.forEach((dropdown) => {
+      dropdown.addEventListener("click", () => {
+        const elemento = dropdown.querySelector(".navbar-dropdown");
+        elemento.classList.toggle("is-active");
+      });
+    });
+
+    var form = document.getElementById("formulario");
+    var all = document.getElementById("all");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+    });
+
+    function enviarForm() {
+      var cpf_valor = document.getElementById("cpf").value;
+      var nome_valor = document.getElementById("nome").value;
+      var telefone_valor = document.getElementById("telefone").value;
+
+      let formData = new FormData();
+      formData.append("cpf", cpf_valor);
+      formData.append("nome", nome_valor);
+      formData.append("telefone", telefone_valor);
+
+      var init = {
+        method: "POST",
+        body: formData,
+      };
+
+      fetch("incluir/salvar", init)
+        .then((response) => {
+          if (response.status == 200) {
+            all.insertAdjacentHTML(
+              "afterBegin",
+              "<div class='notification is-success'> <button onclick='this.parentNode.remove()' class='delete'></button> O cliente foi incluído com sucesso! <strong> Veja <a href='/bancorm'>aqui</a> as outras entidades que você pode manipular.  </div>"
+            );
+          } else {
+            all.insertAdjacentHTML(
+              "afterBegin",
+              "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Aconteceu algum erro ao tentar incluir o cliente. <strong> Consulte <a href='/bancorm/cliente/consultar'>aqui</a> se já não existe um cliente com esse CPF.</strong> Caso o cliente não exista, atualize a página e tente novamente. </div>"
+            );
+          }
+        })
+        .catch((error) => {
+          all.insertAdjacentHTML(
+            "afterBegin",
+            "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Aconteceu algum erro ao realizar a requisição. Por favor, atualize a página e tente novamente </div>"
+          );
+        });
+    }
+  </script>
+</html>
