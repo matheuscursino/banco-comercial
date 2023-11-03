@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Cliente</title>
+    <title>Atualizar cliente</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
@@ -10,52 +10,22 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="view/images/favicon-32x32.png"
+      href="../view/images/favicon-32x32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="view/images/favicon-16x16.png"
+      href="../view/images/favicon-16x16.png"
     />
-    <link rel="manifest" href="view/images/site.webmanifest" />
-    <style>
-      body {
-        margin: 0px;
-        padding: 0px;
-        font-family: "Arial";
-      }
-
-      button {
-        margin: 10px;
-        padding: 20px;
-        border: none;
-        border-radius: 10px;
-        color: white;
-        background-color: darkblue;
-        cursor: pointer;
-        width: 300px;
-      }
-
-      @media screen and (max-width: 1024px) {
-        .navbar-dropdown .is-active {
-          display: block;
-        }
-        .navbar-dropdown:not(.is-active) {
-          display: none;
-        }
-      }
-
-      .all {
-        text-align: center;
-      }
-    </style>
+    <link rel="manifest" href="../view/images/site.webmanifest" />
+    <link rel="stylesheet" href="../view/cliente/css/atualizarCliente.css" />
   </head>
   <body>
     <nav class="navbar is-light">
       <div class="navbar-brand">
         <a class="navbar-item" href="/bancorm">
-          <img src="view/images/favicon-32x32.png" width="32" height="32" />
+          <img src="../view/images/favicon-32x32.png" width="32" height="32" />
         </a>
         <div
           id="burger"
@@ -132,35 +102,68 @@
         </div>
       </div>
     </nav>
-    <div class="all">
-      <button onclick="location.href = 'cliente/incluir'">INCLUIR</button>
-      <br />
-      <button onclick="location.href = 'cliente/deletar'">DELETAR</button>
-      <br />
-      <button onclick="location.href = 'cliente/consultar'">CONSULTAR</button>
-      <br />
-      <button onclick="location.href = 'cliente/listar'">LISTAR</button> <br />
-      <button onclick="location.href = 'cliente/atualizar'">ATUALIZAR</button>
+    <div id="all" class="content">
+      <h1>ATUALIZAR CLIENTE</h1>
+      <div class="box">
+        <form class="form">
+          <div class="field">
+            <label class="label">CPF do cliente que será atualizado: </label>
+            <div class="control">
+              <input
+                class="input"
+                placeholder="Digite o CPF do cliente aqui..."
+                type="number"
+                name="cpf"
+                id="cpf"
+              />
+            </div>
+          </div>
+          <button onclick="consultar()" class="button is-link">Salvar</button>
+        </form>
+      </div>
+      <div id="conteudo">
+        <h2>Atualizar nome</h2>
+        <div class="box">
+          <form class="form">
+            <div class="field">
+              <label class="label">Novo nome do cliente: </label>
+              <div class="control">
+                <input
+                  class="input"
+                  placeholder="Digite o novo nome do cliente aqui..."
+                  type="text"
+                  name="nome"
+                  id="nome"
+                />
+              </div>
+            </div>
+            <button onclick="atualizar(1)" class="button is-danger">
+              Atualizar
+            </button>
+          </form>
+        </div>
+        <h2>Atualizar telefone</h2>
+        <div class="box">
+          <form class="form">
+            <div class="field">
+              <label class="label">Novo telefone do cliente: </label>
+              <div class="control">
+                <input
+                  class="input"
+                  placeholder="Digite o novo telefone do cliente aqui..."
+                  type="number"
+                  name="telefone"
+                  id="telefone"
+                />
+              </div>
+            </div>
+            <button onclick="atualizar(2)" class="button is-danger">
+              Atualizar
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   </body>
-  <script>
-    var botaoBurger = document.getElementById("burger");
-
-    botaoBurger.addEventListener("click", (e) => {
-      const target = botaoBurger.dataset.target;
-      const eTarget = document.getElementById(target);
-
-      botaoBurger.classList.toggle("is-active");
-      eTarget.classList.toggle("is-active");
-    });
-
-    const allDropdowns = document.querySelectorAll(".navbar-item.has-dropdown");
-
-    allDropdowns.forEach((dropdown) => {
-      dropdown.addEventListener("click", () => {
-        const elemento = dropdown.querySelector(".navbar-dropdown");
-        elemento.classList.toggle("is-active");
-      });
-    });
-  </script>
+  <script src="../view/cliente/js/atualizarCliente.js"></script>
 </html>

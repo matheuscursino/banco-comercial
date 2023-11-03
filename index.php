@@ -7,7 +7,7 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 switch($url)
 {
     case '/bancorm/':
-        include "View/home.php";
+        include "View/home/html/home.html";
         break;
     
     // cliente views

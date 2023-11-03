@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listar cliente</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../view/images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../view/images/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../view/images/site.webmanifest" />
+    <link rel="stylesheet" href="../view/cliente/css/listarCliente.css" />
+  </head>
+  <body>
+    <nav class="navbar is-light">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/bancorm">
+          <img src="../view/images/favicon-32x32.png" width="32" height="32" />
+        </a>
+        <div
+          id="burger"
+          class="navbar-burger"
+          data-target="navbarExampleTransparentExample"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <div id="navbarExampleTransparentExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="/bancorm"> Home </a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link"> Cliente </a>
+            <div class="navbar-dropdown is-boxed">
+              <a class="navbar-item" href="/bancorm/cliente/incluir">
+                Incluir
+              </a>
+              <a class="navbar-item" href="/bancorm/cliente/atualizar">
+                Atualizar
+              </a>
+              <a class="navbar-item" href="/bancorm/cliente/consultar">
+                Consultar
+              </a>
+              <a class="navbar-item" href="/bancorm/cliente/listar"> Listar </a>
+              <a class="navbar-item" href="/bancorm/cliente/deletar">
+                Deletar
+              </a>
+            </div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link"> Conta corrente </a>
+            <div class="navbar-dropdown is-boxed">
+              <a class="navbar-item" href="/bancorm/contacorrente/incluir">
+                Incluir
+              </a>
+              <a class="navbar-item" href="/bancorm/contacorrente/atualizar">
+                Atualizar
+              </a>
+              <a class="navbar-item" href="/bancorm/contacorrente/consultar">
+                Consultar
+              </a>
+              <a class="navbar-item" href="/bancorm/contacorrente/listar">
+                Listar
+              </a>
+              <a class="navbar-item" href="/bancorm/contacorrente/deletar">
+                Deletar
+              </a>
+            </div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link"> Transação </a>
+            <div class="navbar-dropdown is-boxed">
+              <a class="navbar-item" href="/bancorm/transacao/incluir">
+                Incluir
+              </a>
+              <a class="navbar-item" href="/bancorm/transacao/atualizar">
+                Atualizar
+              </a>
+              <a class="navbar-item" href="/bancorm/transacao/consultar">
+                Consultar
+              </a>
+              <a class="navbar-item" href="/bancorm/transacao/listar">
+                Listar
+              </a>
+              <a class="navbar-item" href="/bancorm/transacao/deletar">
+                Deletar
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div id="all" class="content">
+      <h1>Clique no botão abaixo e liste todos os clientes</h1>
+      <div class="box" id="box">
+        <table class="table is-bordered is-hoverable">
+          <thead>
+            <tr>
+              <th>N°</th>
+              <th>cli_cpf</th>
+              <th>cli_nome</th>
+              <th>cli_tel</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-colunas"></tbody>
+        </table>
+      </div>
+      <button class="button is-link" onclick="listar()">LISTAR</button>
+    </div>
+    <script src="../view/cliente/js/listarCliente.js"></script>
+  </body>
+</html>

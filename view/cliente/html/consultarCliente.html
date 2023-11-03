@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BancoRM</title>
+    <title>Incluir cliente</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
@@ -10,68 +10,22 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="view/images/favicon-32x32.png"
+      href="../view/images/favicon-32x32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="view/images/favicon-16x16.png"
+      href="../view/images/favicon-16x16.png"
     />
-    <link rel="manifest" href="view/images/site.webmanifest" />
-    <style>
-      body {
-        margin: 0px;
-        padding: 0px;
-        font-family: "Arial";
-        text-align: center;
-      }
-
-      li a {
-        display: block;
-        padding: 10px;
-        margin: 10px;
-        color: white;
-        text-decoration: none;
-      }
-
-      li {
-        float: left;
-      }
-
-      ul {
-        background-color: black;
-        list-style-type: none;
-        margin: 0px;
-        padding: 0px;
-        overflow: hidden;
-      }
-
-      li a:hover:not(#notCss) {
-        background-color: blue;
-      }
-
-      .ativo {
-        background-color: darkblue;
-      }
-
-      button {
-        margin: 10px;
-        padding: 20px;
-        border: none;
-        border-radius: 10px;
-        color: white;
-        background-color: darkblue;
-        cursor: pointer;
-        width: 300px;
-      }
-    </style>
+    <link rel="manifest" href="../view/images/site.webmanifest" />
+    <link rel="stylesheet" href="../view/cliente/css/consultarCliente.css"
   </head>
   <body>
-  <nav class="navbar is-light">
+    <nav class="navbar is-light">
       <div class="navbar-brand">
         <a class="navbar-item" href="/bancorm">
-          <img src="view/images/favicon-32x32.png" width="32" height="32" />
+          <img src="../view/images/favicon-32x32.png" width="32" height="32" />
         </a>
         <div
           id="burger"
@@ -148,30 +102,81 @@
         </div>
       </div>
     </nav>
-    <button onclick="location.href = 'cliente'">CLIENTE</button> <br />
-    <button onclick="location.href = 'cliente/deletar'">CONTA</button> <br />
-    <button onclick="location.href = 'cliente/consultar'">TRANSACAO</button>
-    <br />
-    <button onclick="location.href = 'cliente/listar'">DEPOSITO</button> <br />
+    <div class="content" id="all">
+      <h1>CONSULTAR CLIENTE</h1>
+      <div class="box">
+        <h2>Consultar por CPF</h2>
+        <form id="formulario">
+          <div class="field">
+            <label class="label">CPF do cliente: </label>
+            <div class="control">
+              <input
+                class="input"
+                placeholder="Digite o cpf do cliente aqui..."
+                type="number"
+                name="cpf"
+                id="cpf"
+              />
+            </div>
+          </div>
+          <br />
+          <button class="button is-link" onclick="consultar(1)" type="submit">
+            Consultar
+          </button>
+          <button class="button is-light is-link" onclick="form.reset()">
+            Limpar
+          </button>
+        </form>
+      </div>
+      <div class="box">
+        <h2>Consultar por nome</h2>
+        <form id="formulario">
+          <div class="field">
+            <label class="label">Nome do cliente: </label>
+            <div class="control">
+              <input
+                class="input"
+                placeholder="Digite o nome cliente aqui..."
+                type="text"
+                name="nome"
+                id="nome"
+              />
+            </div>
+          </div>
+          <br />
+          <button class="button is-link" onclick="consultar(2)" type="submit">
+            Consultar
+          </button>
+          <button class="button is-light is-link" onclick="form.reset()">
+            Limpar
+          </button>
+        </form>
+      </div>
+      <div class="box">
+        <h2>Consultar por telefone</h2>
+        <form id="formulario">
+          <div class="field">
+            <label class="label">Telefone do cliente: </label>
+            <div class="control">
+              <input
+                class="input"
+                placeholder="Digite o telefone do cliente aqui..."
+                type="number"
+                name="telefone"
+                id="telefone"
+              />
+            </div>
+          </div>
+          <br />
+          <button class="button is-link" onclick="consultar(3)" type="submit">
+            Consultar
+          </button>
+          <button class="button is-light is-link" onclick="form.reset()">
+            Limpar
+          </button>
+        </form>
+      </div>
+    </div>
   </body>
-  <script>
-    var botaoBurger = document.getElementById("burger")
-
-    botaoBurger.addEventListener("click", (e) => {
-      const target = botaoBurger.dataset.target;
-      const eTarget = document.getElementById(target);
-    
-      botaoBurger.classList.toggle("is-active");
-      eTarget.classList.toggle("is-active");
-    });
-    
-    const allDropdowns = document.querySelectorAll(".navbar-item.has-dropdown");
-    
-    allDropdowns.forEach((dropdown) => {
-      dropdown.addEventListener("click", () => {
-        const elemento = dropdown.querySelector(".navbar-dropdown");
-        elemento.classList.toggle("is-active");
-      });
-    });
-  </script>
+  <script src="../view/cliente/js/consultarCliente.js"></script>
 </html>

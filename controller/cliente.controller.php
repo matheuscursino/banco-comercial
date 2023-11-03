@@ -29,27 +29,27 @@ class ClienteController
     }
 
     public static function home_mostrar(){
-        include 'View/cliente/homeCliente.html';
+        include 'View/cliente/html/homeCliente.html';
     }
 
     public static function incluir_mostrar(){
-        include 'View/cliente/incluirCliente.html';
+        include 'View/cliente/html/incluirCliente.html';
     }
 
     public static function atualizar_mostrar(){
-        include 'View/cliente/atualizarCliente.html';
+        include 'View/cliente/html/atualizarCliente.html';
     }
 
     public static function listar_mostrar(){
-        include 'View/cliente/listarCliente.html';
+        include 'View/cliente/html/listarCliente.html';
     }
 
     public static function consultar_mostrar(){
-        include 'View/cliente/consultarCliente.html';
+        include 'View/cliente/html/consultarCliente.html';
     }
 
     public static function deletar_mostrar(){
-        include 'View/cliente/deletarCliente.html';
+        include 'View/cliente/html/deletarCliente.html';
     }
 
     public static function incluir(){

@@ -1,0 +1,45 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Arial";
+  text-align: center;
+}
+
+li a {
+  display: block;
+  padding: 10px;
+  margin: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+li {
+  float: left;
+}
+
+ul {
+  background-color: black;
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+}
+
+li a:hover:not(#notCss) {
+  background-color: blue;
+}
+
+.ativo {
+  background-color: darkblue;
+}
+
+button {
+  margin: 10px;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  background-color: darkblue;
+  cursor: pointer;
+  width: 300px;
+}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Listar cliente</title>
+    <title>Deletar cliente</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
@@ -19,49 +19,7 @@
       href="../view/images/favicon-16x16.png"
     />
     <link rel="manifest" href="../view/images/site.webmanifest" />
-    <style>
-      body {
-        margin: 0px;
-        padding: 0px;
-        font-family: "Arial";
-      }
-
-      table {
-        margin: auto;
-        text-align: center;
-        margin-top: 20px;
-      }
-
-      h1 {
-        margin-top: 20px;
-      }
-
-      @media screen and (max-width: 1024px) {
-        .navbar-dropdown .is-active {
-          display: block;
-        }
-        .navbar-dropdown:not(.is-active) {
-          display: none;
-        }
-      }
-
-      .box {
-        display: none;
-        margin: auto;
-        width: 80%;
-      }
-
-      .content {
-        text-align: center;
-      }
-
-      .notification {
-        margin-top: 20px;
-        width: 80%;
-        margin-left: auto;
-        margin-right: auto;
-      }
-    </style>
+    <link rel="stylesheet" href="../view/cliente/css/deletarCliente.css" />
   </head>
   <body>
     <nav class="navbar is-light">
@@ -145,12 +103,34 @@
       </div>
     </nav>
     <div id="all" class="content">
-      <h1>Clique no botão abaixo e liste todos os clientes</h1>
-      <div class="box" id="box">
-        <table class="table is-bordered is-hoverable">
+      <h1>DELETAR CLIENTE</h1>
+      <div class="box">
+        <form id="formulario">
+          <div class="field">
+            <label class="label">CPF do cliente: </label>
+            <div class="control">
+              <input
+                class="input"
+                placeholder="Digite o cpf do cliente aqui..."
+                type="number"
+                name="cpf"
+                id="cpf"
+              />
+            </div>
+          </div>
+          <button class="button is-link" onclick="consultar()" type="submit">
+            Apagar
+          </button>
+          <button class="button is-link is-light" onclick="form.reset()">
+            Limpar
+          </button>
+        </form>
+      </div>
+      <div class="box" id="tabelaDiv">
+        <h3>Deseja mesmo apagar o cliente abaixo?</h3>
+        <table class="table is-bordered" id="tabela">
           <thead>
             <tr>
-              <th>N°</th>
               <th>cli_cpf</th>
               <th>cli_nome</th>
               <th>cli_tel</th>
@@ -158,74 +138,9 @@
           </thead>
           <tbody id="tabela-colunas"></tbody>
         </table>
+        <button onclick="deletar()" class="button is-danger">Apagar</button>
       </div>
-      <button class="button is-link" onclick="listar()">LISTAR</button>
     </div>
-    <script>
-      var botaoBurger = document.getElementById("burger");
-
-      botaoBurger.addEventListener("click", (e) => {
-        const target = botaoBurger.dataset.target;
-        const eTarget = document.getElementById(target);
-
-        botaoBurger.classList.toggle("is-active");
-        eTarget.classList.toggle("is-active");
-      });
-
-      const allDropdowns = document.querySelectorAll(
-        ".navbar-item.has-dropdown"
-      );
-
-      allDropdowns.forEach((dropdown) => {
-        dropdown.addEventListener("click", () => {
-          const elemento = dropdown.querySelector(".navbar-dropdown");
-          elemento.classList.toggle("is-active");
-        });
-      });
-
-      var box = document.getElementById("box");
-      var tabelaBody = document.getElementById("tabela-colunas");
-      var contador;
-
-      var all = document.getElementById("all");
-
-      function listar() {
-        var init = {
-          method: "POST",
-        };
-
-        fetch("listar/listar", init)
-          .then((response) => {
-            response.json().then((data) => {
-              var array = data.message;
-              if (array.length != 0) {
-                box.style.display = "table";
-                array.forEach((element) => {
-                  contador = 0;
-                  contador += 1;
-                  tabelaBody.innerHTML = "";
-                  tabelaBody.innerHTML += `<tr>
-                       <th>${contador}</th>
-                       <td>${element.cli_cpf}</td>
-                       <td>${element.cli_nome}</td>
-                       <td>${element.cli_telefone}</td>
-                       </tr>`;
-                });
-              } else {
-                all.insertAdjacentHTML(
-                  "afterBegin",
-                  "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Não há clientes no sistema! <strong> Clique <a href='/bancorm/cliente/incluir'>aqui</a> para incluir clientes.  </div>"
-                );
-              }
-            });
-          })
-          .catch((error) => {
-            all.insertAdjacentHTML(
-              "afterBegin",
-              "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Aconteceu algum erro ao fazer a requisição.  </div>"
-            );
-          });
-      }
-    </script>
   </body>
+  <script src="../view/cliente/js/deletarCliente.js"></script>
 </html>

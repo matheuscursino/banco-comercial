@@ -19,58 +19,7 @@
       href="../view/images/favicon-16x16.png"
     />
     <link rel="manifest" href="../view/images/site.webmanifest" />
-    <style>
-      body {
-        margin: 0px;
-        padding: 0px;
-        font-family: "Arial";
-      }
-
-      h1 {
-        text-align: center;
-      }
-
-      form {
-        width: 80%;
-        height: auto;
-        margin: auto;
-        text-align: left;
-      }
-
-      .notification {
-        margin-top: 20px;
-        width: 80%;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      label {
-        margin-left: 10px;
-      }
-
-      h1 {
-        margin-top: 20px;
-      }
-
-      @media screen and (max-width: 1024px) {
-        .navbar-dropdown .is-active {
-          display: block;
-        }
-        .navbar-dropdown:not(.is-active) {
-          display: none;
-        }
-      }
-
-      .box {
-        width: 80%;
-        margin: auto;
-      }
-
-      button {
-        margin-top: 10px;
-        margin-right: 10px;
-      }
-    </style>
+    <link rel="stylesheet" href="../view/cliente/css/incluirCliente.css" />
   </head>
   <body>
     <nav class="navbar is-light">
@@ -192,7 +141,7 @@
             id="telefone"
           />
           <br />
-          <button class="button is-link" onclick="enviarForm()" type="submit">
+          <button class="button is-link" onclick="salvar()" type="submit">
             Enviar
           </button>
           <button class="button is-light is-link" onclick="form.reset()">
@@ -202,68 +151,5 @@
       </div>
     </div>
   </body>
-  <script>
-    var botaoBurger = document.getElementById("burger");
-
-    botaoBurger.addEventListener("click", (e) => {
-      const target = botaoBurger.dataset.target;
-      const eTarget = document.getElementById(target);
-
-      botaoBurger.classList.toggle("is-active");
-      eTarget.classList.toggle("is-active");
-    });
-
-    const allDropdowns = document.querySelectorAll(".navbar-item.has-dropdown");
-
-    allDropdowns.forEach((dropdown) => {
-      dropdown.addEventListener("click", () => {
-        const elemento = dropdown.querySelector(".navbar-dropdown");
-        elemento.classList.toggle("is-active");
-      });
-    });
-
-    var form = document.getElementById("formulario");
-    var all = document.getElementById("all");
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-    });
-
-    function enviarForm() {
-      var cpf_valor = document.getElementById("cpf").value;
-      var nome_valor = document.getElementById("nome").value;
-      var telefone_valor = document.getElementById("telefone").value;
-
-      let formData = new FormData();
-      formData.append("cpf", cpf_valor);
-      formData.append("nome", nome_valor);
-      formData.append("telefone", telefone_valor);
-
-      var init = {
-        method: "POST",
-        body: formData,
-      };
-
-      fetch("incluir/salvar", init)
-        .then((response) => {
-          if (response.status == 200) {
-            all.insertAdjacentHTML(
-              "afterBegin",
-              "<div class='notification is-success'> <button onclick='this.parentNode.remove()' class='delete'></button> O cliente foi incluído com sucesso! <strong> Veja <a href='/bancorm'>aqui</a> as outras entidades que você pode manipular.  </div>"
-            );
-          } else {
-            all.insertAdjacentHTML(
-              "afterBegin",
-              "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Aconteceu algum erro ao tentar incluir o cliente. <strong> Consulte <a href='/bancorm/cliente/consultar'>aqui</a> se já não existe um cliente com esse CPF.</strong> Caso o cliente não exista, atualize a página e tente novamente. </div>"
-            );
-          }
-        })
-        .catch((error) => {
-          all.insertAdjacentHTML(
-            "afterBegin",
-            "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Aconteceu algum erro ao realizar a requisição. Por favor, atualize a página e tente novamente </div>"
-          );
-        });
-    }
-  </script>
+  <script src="../view/cliente/js/incluirCliente.js"></script>
 </html>
