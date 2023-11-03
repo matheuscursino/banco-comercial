@@ -124,8 +124,32 @@ class ClienteModel
         }
     }
 
-    public function atualizar(){
+    public function atualizar(ClienteModel $model, $tipoAtualizacao){
+        switch($tipoAtualizacao)
+        {
+            case 1:
+                $sql = "UPDATE cliente SET cli_nome = ? WHERE cli_cpf = ?";
 
+                $consulta = $this->conexao->prepare($sql);
+
+                $consulta->bindValue(1, $model->nome);
+                $consulta->bindValue(2, $model->cpf);
+
+                try{
+                    $consulta->execute();
+                    $arrayResultados = array(
+                        "conteudo" => null,
+                        "codigo" => 200
+                    );
+                    return $arrayResultados;
+                } catch(PDOException $e){
+                    $arrayResultados = array(
+                        "conteudo" => null,
+                        "codigo" => 200
+                    );
+                    return $arrayResultados;
+                }
+        }
     }
 }
 

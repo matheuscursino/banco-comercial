@@ -57,6 +57,11 @@ switch($url)
         echo $resposta;
         break;
 
+    case '/bancorm/cliente/atualizar/atualizar':
+        $resposta = ClienteController::atualizar();
+        echo $resposta;
+        break;
+
     default:
         echo "erro 404";
         break;

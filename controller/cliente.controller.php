@@ -102,9 +102,21 @@ class ClienteController
 
         $model = new ClienteModel();
 
-        $model->cpf = $_POST['cpf'];
-        $model->nome = $_POST['nome'];
-        $model->telefone = $_POST['telefone'];
+        $tipoAtualizacao = $_POST['tipoAtualizacao'];
+
+        switch($tipoAtualizacao)
+        {
+            case 1: //atualizar nome
+                $model->cpf = $_POST['cpf'];
+                $model->nome = $_POST['nome'];
+
+                $array = $model->atualizar($model, $tipoAtualizacao);
+                $arrayConteudo = $array['conteudo'];
+                $valorCodigo = $array['codigo'];
+
+                $json = self::json_response($valorCodigo, $arrayConteudo);
+                return $json;
+        }
         
        //  return $model->incluir($model);
         

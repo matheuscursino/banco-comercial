@@ -176,7 +176,7 @@
       <div id="conteudo">
         <h2>Atualizar nome</h2>
         <div class="box">
-          <form id="formulario">
+          <form id="formulario2">
             <div class="field">
               <label class="label">Novo nome do cliente: </label>
               <div class="control">
@@ -189,12 +189,14 @@
                 />
               </div>
             </div>
-            <button class="button is-danger">Atualizar</button>
+            <button onclick="atualizar(1);" class="button is-danger">
+              Atualizar
+            </button>
           </form>
         </div>
         <h2>Atualizar telefone</h2>
         <div class="box">
-          <form id="formulario">
+          <form id="formulario3">
             <div class="field">
               <label class="label">Novo telefone do cliente: </label>
               <div class="control">
@@ -239,12 +241,24 @@
       e.preventDefault();
     });
 
+    var form2 = document.getElementById("formulario2");
+
+    form2.addEventListener("submit", (e) => {
+      e.preventDefault();
+    });
+
+    var form3 = document.getElementById("formulario3");
+
+    form3.addEventListener("submit", (e) => {
+      e.preventDefault();
+    });
+
     var conteudo = document.getElementById("conteudo");
     var all = document.getElementById("all");
 
     function consultar() {
       conteudo.style.display = "none";
-      cpf_valor = document.getElementById("cpf").value;
+      var cpf_valor = document.getElementById("cpf").value;
 
       let formData = new FormData();
       formData.append("cpf", cpf_valor);
@@ -278,6 +292,29 @@
             );
           });
       });
+    }
+
+    function atualizar(tipoAtualizacao) {
+      switch (tipoAtualizacao) {
+        case 1:
+          var cpf_valor = document.getElementById("cpf").value;
+          var nome_valor = document.getElementById("nome").value;
+
+          let formData = new FormData();
+          formData.append("cpf", cpf_valor);
+          formData.append("nome", nome_valor);
+          formData.append("tipoAtualizacao", 1);
+
+          var init = { method: "POST", body: formData };
+
+          fetch("atualizar/atualizar", init).then((response) =>
+            response.json().then((data) => {
+              console.log(data);
+            })
+          );
+        case 2:
+          return;
+      }
     }
   </script>
 </html>
