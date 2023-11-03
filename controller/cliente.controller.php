@@ -116,6 +116,16 @@ class ClienteController
 
                 $json = self::json_response($valorCodigo, $arrayConteudo);
                 return $json;
+            case 2: //atualizar telefone
+                $model->cpf = $_POST['cpf'];
+                $model->telefone = $_POST['telefone'];
+
+                $array = $model->atualizar($model, $tipoAtualizacao);
+                $arrayConteudo = $array['conteudo'];
+                $valorCodigo = $array['codigo'];
+
+                $json = self::json_response($valorCodigo, $arrayConteudo);
+                return $json;
         }
         
        //  return $model->incluir($model);

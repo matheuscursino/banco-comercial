@@ -189,7 +189,7 @@
                 />
               </div>
             </div>
-            <button onclick="atualizar(1);" class="button is-danger">
+            <button onclick="atualizar(1)" class="button is-danger">
               Atualizar
             </button>
           </form>
@@ -209,7 +209,9 @@
                 />
               </div>
             </div>
-            <button class="button is-danger">Atualizar</button>
+            <button onclick="atualizar(2)" class="button is-danger">
+              Atualizar
+            </button>
           </form>
         </div>
       </div>
@@ -295,15 +297,15 @@
     }
 
     function atualizar(tipoAtualizacao) {
+      var cpf_valor = document.getElementById("cpf").value;
       switch (tipoAtualizacao) {
         case 1:
-          var cpf_valor = document.getElementById("cpf").value;
           var nome_valor = document.getElementById("nome").value;
 
           let formData = new FormData();
           formData.append("cpf", cpf_valor);
           formData.append("nome", nome_valor);
-          formData.append("tipoAtualizacao", 1);
+          formData.append("tipoAtualizacao", tipoAtualizacao);
 
           var init = { method: "POST", body: formData };
 
@@ -321,8 +323,33 @@
               );
             }
           });
+          break;
         case 2:
-          return;
+          var telefone_valor = document.getElementById("telefone").value;
+
+          let formData2 = new FormData();
+          formData2.append("cpf", cpf_valor);
+          formData2.append("telefone", telefone_valor);
+          formData2.append("tipoAtualizacao", tipoAtualizacao);
+
+          var init2 = { method: "POST", body: formData2 };
+
+          fetch("atualizar/atualizar", init2).then((response) => {
+            if (response.status == 200) {
+              conteudo.style.display = "none";
+              all.insertAdjacentHTML(
+                "afterBegin",
+                "<div class='notification is-success'> <button onclick='this.parentNode.remove()' class='delete'></button> O telefone do cliente foi alterado com sucesso! <strong> Clique <a href='/bancorm/cliente/consultar'>aqui</a> para verificar o seu novo nome.  </div>"
+              );
+            } else {
+              console.log(response.json());
+              all.insertAdjacentHTML(
+                "afterBegin",
+                "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Aconteceu algum erro ao fazer a requisição.</div>"
+              );
+            }
+          });
+          break;
       }
     }
   </script>

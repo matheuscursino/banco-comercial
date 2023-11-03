@@ -149,6 +149,28 @@ class ClienteModel
                     );
                     return $arrayResultados;
                 }
+            case 2:
+                $sql = "UPDATE cliente SET cli_telefone = ? WHERE cli_cpf = ?";
+
+                $consulta = $this->conexao->prepare($sql);
+
+                $consulta->bindValue(1, $model->telefone);
+                $consulta->bindValue(2, $model->cpf);
+
+                try{
+                    $consulta->execute();
+                    $arrayResultados = array(
+                        "conteudo" => null,
+                        "codigo" => 200
+                    );
+                    return $arrayResultados;
+                } catch(PDOException $e){
+                    $arrayResultados = array(
+                        "conteudo" => null,
+                        "codigo" => 400
+                    );
+                    return $arrayResultados;
+                }
         }
     }
 }
