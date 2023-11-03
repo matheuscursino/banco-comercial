@@ -145,7 +145,7 @@ class ClienteModel
                 } catch(PDOException $e){
                     $arrayResultados = array(
                         "conteudo" => null,
-                        "codigo" => 200
+                        "codigo" => 400
                     );
                     return $arrayResultados;
                 }
