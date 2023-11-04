@@ -1,6 +1,7 @@
 <?php
 
 include 'Controller/cliente.controller.php';
+include 'Controller/conta.controller.php';
 
 $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
@@ -60,6 +61,12 @@ switch($url)
     case '/bancorm/cliente/atualizar/atualizar':
         $resposta = ClienteController::atualizar();
         echo $resposta;
+        break;
+
+    // conta views
+
+    case '/bancorm/contacorrente':
+        ContaController::home_mostrar();
         break;
 
     default:

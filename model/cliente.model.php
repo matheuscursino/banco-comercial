@@ -3,7 +3,7 @@
 class ClienteModel
 {
     public $cpf, $nome, $telefone;
-    public $conexao;
+    private $conexao;
 
     public function __construct(){
         $dsn = "mysql:host=localhost;dbname=bancorm";

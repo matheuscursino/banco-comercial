@@ -2,8 +2,6 @@
 
 class ClienteController
 {
-
-
     public static function json_response($code, $message){
         // clear the old headers
         header_remove();
