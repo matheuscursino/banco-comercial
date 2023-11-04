@@ -20,7 +20,6 @@ function consultar() {
       .json()
       .then((data) => {
         var objCliente = data.message;
-        console.log(objCliente);
 
         if (objCliente != false) {
           tabelaBody.innerHTML = "";
@@ -42,6 +41,7 @@ function consultar() {
 }
 
 function deletar() {
+  var cpf_valor = document.getElementById("cpf").value;
   let formData = new FormData();
   formData.append("cpf", cpf_valor);
 

@@ -18,7 +18,6 @@ function consultar() {
     response
       .json()
       .then((data) => {
-        console.log(data);
         var objCliente = data.message;
 
         if (objCliente !== false) {
