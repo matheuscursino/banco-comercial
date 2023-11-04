@@ -1,4 +1,13 @@
 var botaoBurger = document.getElementById("burger");
+var allDropdowns = document.querySelectorAll(".navbar-item.has-dropdown");
+const allForms = document.querySelectorAll("form");
+var all = document.getElementById("all");
+var modal = document.getElementById("modal");
+var closeElements = document.querySelectorAll(
+  ".modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button"
+);
+var tabela = document.getElementById("tabela");
+var contador;
 
 botaoBurger.addEventListener("click", (e) => {
   const target = botaoBurger.dataset.target;
@@ -8,8 +17,6 @@ botaoBurger.addEventListener("click", (e) => {
   eTarget.classList.toggle("is-active");
 });
 
-const allDropdowns = document.querySelectorAll(".navbar-item.has-dropdown");
-
 allDropdowns.forEach((dropdown) => {
   dropdown.addEventListener("click", () => {
     const elemento = dropdown.querySelector(".navbar-dropdown");
@@ -17,47 +24,80 @@ allDropdowns.forEach((dropdown) => {
   });
 });
 
-var form = document.getElementById("formulario");
-var all = document.getElementById("all");
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
+allForms.forEach((form) => {
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+  });
 });
 
-/*
-function enviarForm() {
+closeElements.forEach((elemento) => {
+  elemento.addEventListener("click", () => {
+    modal.classList.remove("is-active");
+  });
+});
+
+function consultar(tipoConsulta) {
   var cpf_valor = document.getElementById("cpf").value;
   var nome_valor = document.getElementById("nome").value;
   var telefone_valor = document.getElementById("telefone").value;
 
-  let formData = new FormData();
-  formData.append("cpf", cpf_valor);
-  formData.append("nome", nome_valor);
-  formData.append("telefone", telefone_valor);
+  switch (tipoConsulta) {
+    case 1:
+      let formData = new FormData();
+      formData.append("cpf", cpf_valor);
+      formData.append("tipoConsulta", tipoConsulta);
 
-  var init = {
-    method: "POST",
-    body: formData,
-  };
+      var init = {
+        method: "POST",
+        body: formData,
+      };
 
-  fetch("incluir/salvar", init)
-    .then((response) => {
-      if (response.status == 200) {
-        all.insertAdjacentHTML(
-          "afterBegin",
-          "<div class='notification is-success'> <button onclick='this.parentNode.remove()' class='delete'></button> O cliente foi incluído com sucesso! <strong> Veja <a href='/bancorm'>aqui</a> as outras entidades que você pode manipular.  </div>"
-        );
-      } else {
-        all.insertAdjacentHTML(
-          "afterBegin",
-          "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Aconteceu algum erro ao tentar incluir o cliente. <strong> Consulte <a href='/bancorm/cliente/consultar'>aqui</a> se já não existe um cliente com esse CPF.</strong> Caso o cliente não exista, atualize a página e tente novamente. </div>"
-        );
-      }
-    })
-    .catch((error) => {
-      all.insertAdjacentHTML(
-        "afterBegin",
-        "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Aconteceu algum erro ao realizar a requisição. Por favor, atualize a página e tente novamente </div>"
-      );
-    });
-}*/
+      requisicaoConsulta(init);
+      break;
+    case 2:
+      let formData2 = new FormData();
+      formData2.append("nome", nome_valor);
+      formData2.append("tipoConsulta", tipoConsulta);
+
+      var init2 = {
+        method: "POST",
+        body: formData2,
+      };
+
+      requisicaoConsulta(init2);
+      break;
+    case 3:
+      let formData3 = new FormData();
+      formData3.append("telefone", telefone_valor);
+      formData3.append("tipoConsulta", tipoConsulta);
+
+      var init3 = {
+        method: "POST",
+        body: formData3,
+      };
+
+      requisicaoConsulta(init3);
+      break;
+  }
+  function requisicaoConsulta(init) {
+    fetch("consultar/consultar", init).then((response) =>
+      response.json().then((data) => {
+        if (data.message !== false) {
+          var objCliente = data.message;
+          tabela.innerHTML = "";
+          tabela.innerHTML += `<tr>
+             <td>${objCliente.cli_cpf}</td>
+             <td>${objCliente.cli_nome}</td>
+             <td>${objCliente.cli_telefone}</td>
+             </tr>`;
+          modal.classList.add("is-active");
+        } else {
+          all.insertAdjacentHTML(
+            "afterBegin",
+            "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Não foi possível consultar esse cliente. <strong> Adicione <a href='/bancorm/cliente/incluir'>aqui</a> novos clientes.</strong</div>"
+          );
+        }
+      })
+    );
+  }
+}

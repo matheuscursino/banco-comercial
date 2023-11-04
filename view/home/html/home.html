@@ -19,7 +19,7 @@
       href="view/images/favicon-16x16.png"
     />
     <link rel="manifest" href="view/images/site.webmanifest" />
-    <link rel="stylesheet" href="../view/home/css/home.css" />
+    <link rel="stylesheet" href="view/home/css/home.css" />
   </head>
   <body>
     <nav class="navbar is-light">
@@ -102,11 +102,31 @@
         </div>
       </div>
     </nav>
-    <button onclick="location.href = 'cliente'">CLIENTE</button> <br />
-    <button onclick="location.href = 'cliente/deletar'">CONTA</button> <br />
-    <button onclick="location.href = 'cliente/consultar'">TRANSACAO</button>
-    <br />
-    <button onclick="location.href = 'cliente/listar'">DEPOSITO</button> <br />
+    <div class="content">
+      <h1>Acesse as entidades usando os botões abaixo</h1>
+      <button class="button is-link" onclick="location.href = 'cliente'">
+        CLIENTE
+      </button>
+      <br />
+      <button
+        class="button is-link"
+        onclick="location.href = 'cliente/deletar'"
+      >
+        CONTA
+      </button>
+      <br />
+      <button
+        class="button is-link"
+        onclick="location.href = 'cliente/consultar'"
+      >
+        TRANSACAO
+      </button>
+      <br />
+      <button class="button is-link" onclick="location.href = 'cliente/listar'">
+        DEPOSITO
+      </button>
+      <br />
+    </div>
   </body>
-  <script src="../view/home/js/home.js"></script>
+  <script src="view/home/js/home.js"></script>
 </html>

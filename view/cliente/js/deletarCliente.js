@@ -44,19 +44,17 @@ function consultar() {
     response
       .json()
       .then((data) => {
-        console.log(data);
-        var dataArray = data.message;
+        var objCliente = data.message;
+        console.log(objCliente);
 
-        if (dataArray.length != 0) {
+        if (objCliente != false) {
           tabelaBody.innerHTML = "";
           tabelaDiv.style.display = "block";
-          dataArray.forEach((element) => {
-            tabelaBody.innerHTML += `<tr>
-             <td>${element.cli_cpf}</td>
-             <td>${element.cli_nome}</td>
-             <td>${element.cli_telefone}</td>
+          tabelaBody.innerHTML += `<tr>
+             <td>${objCliente.cli_cpf}</td>
+             <td>${objCliente.cli_nome}</td>
+             <td>${objCliente.cli_telefone}</td>
              </tr>`;
-          });
         } else {
           all.insertAdjacentHTML(
             "afterBegin",

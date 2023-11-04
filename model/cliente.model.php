@@ -86,7 +86,7 @@ class ClienteModel
 
                 try{
                     $consulta->execute();
-                    $resultadoConsulta = $consulta->fetchAll(PDO::FETCH_ASSOC);
+                    $resultadoConsulta = $consulta->fetch(PDO::FETCH_ASSOC);
                     $arrayResultados = array(
                         "conteudo" => $resultadoConsulta,
                         "codigo" => 200
@@ -108,7 +108,29 @@ class ClienteModel
 
                 try{
                     $consulta->execute();
-                    $resultadoConsulta = $consulta->fetchAll(PDO::FETCH_ASSOC);
+                    $resultadoConsulta = $consulta->fetch(PDO::FETCH_ASSOC);
+                    $arrayResultados = array(
+                        "conteudo" => $resultadoConsulta,
+                        "codigo" => 200
+                    );
+                    return $arrayResultados;
+                } catch(PDOException $e) {
+                    $arrayResultados = array(
+                        "conteudo" => null,
+                        "codigo" => 400
+                    );
+                    return $arrayResultados;
+                }
+            case 3:
+                $sql = "SELECT * FROM cliente WHERE cli_telefone = ?";
+
+                $consulta = $this->conexao->prepare($sql);
+
+                $consulta->bindValue(1, $model->telefone);
+
+                try{
+                    $consulta->execute();
+                    $resultadoConsulta = $consulta->fetch(PDO::FETCH_ASSOC);
                     $arrayResultados = array(
                         "conteudo" => $resultadoConsulta,
                         "codigo" => 200

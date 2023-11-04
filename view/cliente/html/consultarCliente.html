@@ -19,7 +19,7 @@
       href="../view/images/favicon-16x16.png"
     />
     <link rel="manifest" href="../view/images/site.webmanifest" />
-    <link rel="stylesheet" href="../view/cliente/css/consultarCliente.css"
+    <link rel="stylesheet" href="../view/cliente/css/consultarCliente.css" />
   </head>
   <body>
     <nav class="navbar is-light">
@@ -106,7 +106,7 @@
       <h1>CONSULTAR CLIENTE</h1>
       <div class="box">
         <h2>Consultar por CPF</h2>
-        <form id="formulario">
+        <form class="form">
           <div class="field">
             <label class="label">CPF do cliente: </label>
             <div class="control">
@@ -130,7 +130,7 @@
       </div>
       <div class="box">
         <h2>Consultar por nome</h2>
-        <form id="formulario">
+        <form class="form">
           <div class="field">
             <label class="label">Nome do cliente: </label>
             <div class="control">
@@ -154,7 +154,7 @@
       </div>
       <div class="box">
         <h2>Consultar por telefone</h2>
-        <form id="formulario">
+        <form class="form">
           <div class="field">
             <label class="label">Telefone do cliente: </label>
             <div class="control">
@@ -176,6 +176,29 @@
           </button>
         </form>
       </div>
+    </div>
+    <div id="modal" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="modal-card-head">
+          <div class="modal-card-title">
+            <p>Resultado da consulta</p>
+          </div>
+        </div>
+        <div class="modal-card-body">
+          <table class="table is-bordered is-hoverable">
+            <thead>
+              <tr>
+                <th>cli_cpf</th>
+                <th>cli_nome</th>
+                <th>cli_tel</th>
+              </tr>
+            </thead>
+            <tbody id="tabela"></tbody>
+          </table>
+        </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
     </div>
   </body>
   <script src="../view/cliente/js/consultarCliente.js"></script>

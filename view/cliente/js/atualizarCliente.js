@@ -46,9 +46,9 @@ function consultar() {
       .json()
       .then((data) => {
         console.log(data);
-        var dataArray = data.message;
+        var objCliente = data.message;
 
-        if (dataArray.length != 0) {
+        if (objCliente !== false) {
           conteudo.style.display = "block";
         } else {
           all.insertAdjacentHTML(

@@ -19,7 +19,7 @@
       href="view/images/favicon-16x16.png"
     />
     <link rel="manifest" href="view/images/site.webmanifest" />
-    <link rel="stylesheet" href="../view/cliente/css/homeCliente.css" />
+    <link rel="stylesheet" href="view/cliente/css/homeCliente.css" />
   </head>
   <body>
     <nav class="navbar is-light">
@@ -102,16 +102,40 @@
         </div>
       </div>
     </nav>
-    <div class="all">
-      <button onclick="location.href = 'cliente/incluir'">INCLUIR</button>
+    <div id="all" class="content">
+      <h1>Acesse os métodos das entidades utilizando os botões abaixo</h1>
+      <button
+        class="button is-link"
+        onclick="location.href = 'cliente/incluir'"
+      >
+        INCLUIR
+      </button>
       <br />
-      <button onclick="location.href = 'cliente/deletar'">DELETAR</button>
+      <button
+        class="button is-link"
+        onclick="location.href = 'cliente/deletar'"
+      >
+        DELETAR
+      </button>
       <br />
-      <button onclick="location.href = 'cliente/consultar'">CONSULTAR</button>
+      <button
+        class="button is-link"
+        onclick="location.href = 'cliente/consultar'"
+      >
+        CONSULTAR
+      </button>
       <br />
-      <button onclick="location.href = 'cliente/listar'">LISTAR</button> <br />
-      <button onclick="location.href = 'cliente/atualizar'">ATUALIZAR</button>
+      <button class="button is-link" onclick="location.href = 'cliente/listar'">
+        LISTAR
+      </button>
+      <br />
+      <button
+        class="button is-link"
+        onclick="location.href = 'cliente/atualizar'"
+      >
+        ATUALIZAR
+      </button>
     </div>
   </body>
-  <script src="../view/cliente/js/deletarCliente.js"></script>
+  <script src="view/cliente/js/homeCliente.js"></script>
 </html>

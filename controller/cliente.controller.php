@@ -128,8 +128,6 @@ class ClienteController
                 return $json;
         }
         
-       //  return $model->incluir($model);
-        
     }
 
     public static function consultar(){
@@ -141,7 +139,7 @@ class ClienteController
 
         switch($tipoConsulta)
         {
-            case 1: //consulta por cpf
+            case 1:
                 $model->cpf = $_POST['cpf'];
                 $array = $model->consultar($model, $tipoConsulta);
                 $arrayConteudo = $array["conteudo"];
@@ -149,8 +147,8 @@ class ClienteController
 
                 $json = self::json_response($valorCodigo, $arrayConteudo);
                 return $json;
-            case 2: //consulta por nome
-                $model->cpf = $_POST['nome'];
+            case 2:
+                $model->nome = $_POST['nome'];
                 $array = $model->consultar($model, $tipoConsulta);
                 $arrayConteudo = $array["conteudo"];
                 $valorCodigo = $array["codigo"];
@@ -158,7 +156,13 @@ class ClienteController
                 $json = self::json_response($valorCodigo, $arrayConteudo);
                 return $json;
             case 3:
-                return; //consulta por telefone
+                $model->telefone = $_POST['telefone'];
+                $array = $model->consultar($model, $tipoConsulta);
+                $arrayConteudo = $array["conteudo"];
+                $valorCodigo = $array["codigo"];
+
+                $json = self::json_response($valorCodigo, $arrayConteudo);
+                return $json;
         }
     }
 
