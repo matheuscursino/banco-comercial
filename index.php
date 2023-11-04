@@ -69,6 +69,26 @@ switch($url)
         ContaController::home_mostrar();
         break;
 
+    case '/bancorm/contacorrente/incluir':
+        ContaController::incluir_mostrar();
+        break;
+
+    case '/bancorm/contacorrente/consultar':
+        ContaControler::consultar_mostrar();
+        break;
+    
+    case '/bancorm/contacorrente/atualizar':
+        ContaController::atualizar_mostrar();
+        break;
+
+    case '/bancorm/contacorrente/listar':
+        ContaCorrente::listar_mostrar();
+        break;
+
+    case '/bancorm/contacorrente/deletar':
+        ContaCorrente::deletar_mostrar();
+        break;
+
     default:
         echo "erro 404";
         break;

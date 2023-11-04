@@ -45,9 +45,17 @@ class ClienteModel
 
         try {
             $consulta->execute();
-            return 200;
+            $arrayResultados = array(
+                "conteudo" => null,
+                "codigo" => 200
+            );
+            return $arrayResultados;
         } catch(PDOException $e) {
-            return 400;
+            $arrayResultados = array(
+                "conteudo" => null,
+                "codigo" => 400
+            );
+            return $arrayResultados;
         }
     }
 

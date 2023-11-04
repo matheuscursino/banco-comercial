@@ -2,29 +2,6 @@
 
 class ClienteController
 {
-    public static function json_response($code, $message){
-        // clear the old headers
-        header_remove();
-        // set the actual code
-        http_response_code($code);
-        // set the header to make sure cache is forced
-        header("Cache-Control: no-transform,public,max-age=300,s-maxage=900");
-        // treat this as json
-        header('Content-Type: application/json');
-        $status = array(
-            200 => '200 OK',
-            400 => '400 Bad Request',
-            422 => 'Unprocessable Entity',
-            500 => '500 Internal Server Error'
-            );
-        // ok, validation error, or failure
-        header('Status: '.$status[$code]);
-        // return the encoded json
-        return json_encode(array(
-            'status' => $code, // success or not?
-            'message' => $message
-            ));
-    }
 
     public static function home_mostrar(){
         include 'View/cliente/html/homeCliente.html';
@@ -51,6 +28,7 @@ class ClienteController
     }
 
     public static function incluir(){
+        include 'Controller/util.controller.php';
         include 'Model/cliente.model.php';
 
         $model = new ClienteModel();
@@ -64,22 +42,30 @@ class ClienteController
         $arrayConteudo = $array["conteudo"];
         $valorCodigo = $array["codigo"];
 
-        $resposta = self::json_response($valorCodigo, $arrayConteudo); 
+        $resposta = UtilController::json_response($valorCodigo, $arrayConteudo); 
 
         return $resposta;
     }
 
     public static function deletar(){
+        include 'Controller/util.controller.php';
         include 'Model/cliente.model.php';
 
         $model = new ClienteModel();
 
         $model->cpf = $_POST['cpf'];
 
-        return $model->deletar($model);
+        $array = $model->deletar($model);
+
+        $arrayConteudo = $array["conteudo"];
+        $valorCodigo = $array["codigo"];
+
+        $resposta = UtilController::json_response($valorCodigo, $arrayConteudo);
+        return $resposta;
     }
 
     public static function listar(){
+        include 'Controller/util.controller.php';
         include 'Model/cliente.model.php';
 
         $model = new ClienteModel();
@@ -89,13 +75,14 @@ class ClienteController
         $arrayConteudo = $array["conteudo"];
         $valorCodigo = $array["codigo"];
 
-        $resposta = self::json_response($valorCodigo, $arrayConteudo); 
+        $resposta = UtilController::json_response($valorCodigo, $arrayConteudo); 
 
         return $resposta;
 
     }
 
     public static function atualizar(){
+        include 'Controller/util.controller.php';
         include 'Model/cliente.model.php';
 
         $model = new ClienteModel();
@@ -112,7 +99,7 @@ class ClienteController
                 $arrayConteudo = $array['conteudo'];
                 $valorCodigo = $array['codigo'];
 
-                $json = self::json_response($valorCodigo, $arrayConteudo);
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
                 return $json;
             case 2: //atualizar telefone
                 $model->cpf = $_POST['cpf'];
@@ -122,13 +109,14 @@ class ClienteController
                 $arrayConteudo = $array['conteudo'];
                 $valorCodigo = $array['codigo'];
 
-                $json = self::json_response($valorCodigo, $arrayConteudo);
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
                 return $json;
         }
         
     }
 
     public static function consultar(){
+        include 'Controller/util.controller.php';
         include 'Model/cliente.model.php';
 
         $model = new ClienteModel();
@@ -143,7 +131,7 @@ class ClienteController
                 $arrayConteudo = $array["conteudo"];
                 $valorCodigo = $array["codigo"];
 
-                $json = self::json_response($valorCodigo, $arrayConteudo);
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
                 return $json;
             case 2:
                 $model->nome = $_POST['nome'];
@@ -151,7 +139,7 @@ class ClienteController
                 $arrayConteudo = $array["conteudo"];
                 $valorCodigo = $array["codigo"];
 
-                $json = self::json_response($valorCodigo, $arrayConteudo);
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
                 return $json;
             case 3:
                 $model->telefone = $_POST['telefone'];
@@ -159,7 +147,7 @@ class ClienteController
                 $arrayConteudo = $array["conteudo"];
                 $valorCodigo = $array["codigo"];
 
-                $json = self::json_response($valorCodigo, $arrayConteudo);
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
                 return $json;
         }
     }
