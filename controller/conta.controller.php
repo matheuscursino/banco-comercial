@@ -25,7 +25,21 @@ class ContaController
     }
 
     public static function incluir(){
+        include 'Controller/util.controller.php';
+        include 'Model/conta.model.php';
 
+        $model = new ContaModel();
+
+        $model->saldo = 0;
+        $model->cpfDono = $_POST["cpf"];
+
+        $array = $model->incluir($model);
+
+        $arrayConteudo = $array["conteudo"];
+        $valorCodigo = $array["codigo"];
+
+        $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+        return $json;
     }
 
     public static function consultar(){

@@ -43,7 +43,7 @@ function consultarConta(tipoConsulta) {
     response.json().then((data) => {
       console.log(data);
       if (data.message == false) {
-        //
+        criarConta();
       } else {
         all.insertAdjacentHTML(
           "afterBegin",
@@ -54,4 +54,23 @@ function consultarConta(tipoConsulta) {
   );
 }
 
-function criarConta() {}
+function criarConta() {
+  var cpf_valor = document.getElementById("cpf").value;
+
+  var formData = new FormData();
+  formData.append("cpf", cpf_valor);
+
+  var init = {
+    method: "POST",
+    body: formData,
+  };
+
+  fetch("incluir/incluir", init).then((response) => {
+    if (response.status == 200) {
+      all.insertAdjacentHTML(
+        "afterBegin",
+        "<div class='notification is-success'> <button onclick='this.parentNode.remove()' class='delete'></button> A conta foi criada com sucesso! <strong> Veja <a href='/bancorm'>aqui</a> as outras entidades que você pode manipular.  </div>"
+      );
+    }
+  });
+}

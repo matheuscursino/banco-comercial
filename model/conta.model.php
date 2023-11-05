@@ -3,7 +3,7 @@
 class ContaModel
 {
     private $conexao;
-    public $id, $saldo, $dataCriacao, $cpfDono;
+    public $saldo, $cpfDono;
 
     public function __construct(){
         $dsn = "mysql:host=localhost;dbname=bancorm";
@@ -12,14 +12,27 @@ class ContaModel
 
 
     public function incluir(ContaModel $model){
-        $sql = "INSERT INTO contas (con_id, con_saldo, con_dataCriacao, con_dono ) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO contas ( con_saldo, con_dataCriacao, con_dono ) VALUES (?, NOW(), ?)";
 
         $consulta = $this->conexao->prepare($sql);
 
-        $consulta->bindValue(1, $model->id);
-        $consulta->bindValue(2, $model->saldo);
-        $consulta->bindValue(3, $model->dataCriacao);
-        $consulta->bindValue(4, $model->cpfDono);
+        $consulta->bindValue(1, $model->saldo);
+        $consulta->bindValue(2, $model->cpfDono);
+
+        try{
+            $consulta->execute();
+            $arrayResultados = array(
+                "conteudo" => null,
+                "codigo" => 200
+            );
+            return $arrayResultados;
+        } catch(PDOException $e){
+            $arrayResultados = array(
+                "conteudo" => null,
+                "codigo" => 400
+            );
+            return $arrayResultados;
+        }
 
         
     }
