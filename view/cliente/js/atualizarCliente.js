@@ -14,10 +14,9 @@ function consultar() {
     body: formData,
   };
 
-  fetch("consultar/consultar", init).then((response) => {
-    response
-      .json()
-      .then((data) => {
+  fetch("consultar/consultar", init)
+    .then((response) => {
+      response.json().then((data) => {
         var objCliente = data.message;
 
         if (objCliente !== false) {
@@ -28,14 +27,14 @@ function consultar() {
             "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> O cliente com o CPF indicado não foi encontrado! <strong> Clique <a href='/bancorm/cliente/listar'>aqui</a> para conferir o CPF de todos os cliente.  </div>"
           );
         }
-      })
-      .catch((error) => {
-        all.insertAdjacentHTML(
-          "afterBegin",
-          "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Aconteceu algum erro ao fazer a requisição.  </div>"
-        );
       });
-  });
+    })
+    .catch((error) => {
+      all.insertAdjacentHTML(
+        "afterBegin",
+        "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Aconteceu algum erro ao fazer a requisição.  </div>"
+      );
+    });
 }
 
 function atualizar(tipoAtualizacao) {
@@ -76,21 +75,28 @@ function atualizar(tipoAtualizacao) {
 
       var init2 = { method: "POST", body: formData2 };
 
-      fetch("atualizar/atualizar", init2).then((response) => {
-        if (response.status == 200) {
-          conteudo.style.display = "none";
+      fetch("atualizar/atualizar", init2)
+        .then((response) => {
+          if (response.status == 200) {
+            conteudo.style.display = "none";
+            all.insertAdjacentHTML(
+              "afterBegin",
+              "<div class='notification is-success'> <button onclick='this.parentNode.remove()' class='delete'></button> O telefone do cliente foi alterado com sucesso! <strong> Clique <a href='/bancorm/cliente/consultar'>aqui</a> para verificar o seu novo nome.  </div>"
+            );
+          } else {
+            console.log(response.json());
+            all.insertAdjacentHTML(
+              "afterBegin",
+              "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Aconteceu algum erro ao fazer a requisição.</div>"
+            );
+          }
+        })
+        .catch(() => {
           all.insertAdjacentHTML(
             "afterBegin",
-            "<div class='notification is-success'> <button onclick='this.parentNode.remove()' class='delete'></button> O telefone do cliente foi alterado com sucesso! <strong> Clique <a href='/bancorm/cliente/consultar'>aqui</a> para verificar o seu novo nome.  </div>"
+            "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Aconteceu algum erro ao realizar a requisição. Por favor, atualize a página e tente novamente </div>"
           );
-        } else {
-          console.log(response.json());
-          all.insertAdjacentHTML(
-            "afterBegin",
-            "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Aconteceu algum erro ao fazer a requisição.</div>"
-          );
-        }
-      });
+        });
       break;
   }
 }

@@ -6,6 +6,9 @@ class ContaController
     public static function home_mostrar(){
         include 'View/conta/html/homeConta.html';
     }
+    public static function incluir_mostrar(){
+        include 'View/conta/html/incluirConta.html';
+    }
 
     public static function atualizar_mostrar(){
         include 'View/conta/html/atualizarConta.html';
@@ -19,6 +22,39 @@ class ContaController
     }
     public static function deletar_mostrar(){
         include 'View/conta/html/deletarConta.html';
+    }
+
+    public static function incluir(){
+
+    }
+
+    public static function consultar(){
+        include 'Controller/util.controller.php';
+        include 'Model/conta.model.php';
+
+        $model = new ContaModel();
+
+        $tipoConsulta = $_POST["tipoConsulta"];
+
+        switch($tipoConsulta)
+        {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                $model->cpfDono = $_POST["cpf"];
+
+                $array = $model->consultar($model, $tipoConsulta);
+                $arrayConteudo = $array["conteudo"];
+                $valorCodigo = $array["codigo"];
+
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+                return $json;
+
+        }
     }
 
 }

@@ -56,24 +56,31 @@ function consultar(tipoConsulta) {
       break;
   }
   function requisicaoConsulta(init) {
-    fetch("consultar/consultar", init).then((response) =>
-      response.json().then((data) => {
-        if (data.message !== false) {
-          var objCliente = data.message;
-          tabela.innerHTML = "";
-          tabela.innerHTML += `<tr>
+    fetch("consultar/consultar", init)
+      .then((response) =>
+        response.json().then((data) => {
+          if (data.message !== false) {
+            var objCliente = data.message;
+            tabela.innerHTML = "";
+            tabela.innerHTML += `<tr>
              <td>${objCliente.cli_cpf}</td>
              <td>${objCliente.cli_nome}</td>
              <td>${objCliente.cli_telefone}</td>
              </tr>`;
-          modal.classList.add("is-active");
-        } else {
-          all.insertAdjacentHTML(
-            "afterBegin",
-            "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Não foi possível consultar esse cliente. <strong> Adicione <a href='/bancorm/cliente/incluir'>aqui</a> novos clientes.</strong</div>"
-          );
-        }
-      })
-    );
+            modal.classList.add("is-active");
+          } else {
+            all.insertAdjacentHTML(
+              "afterBegin",
+              "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Não foi possível consultar esse cliente. <strong> Adicione <a href='/bancorm/cliente/incluir'>aqui</a> para adicionar novos clientes.</strong</div>"
+            );
+          }
+        })
+      )
+      .catch(() => {
+        all.insertAdjacentHTML(
+          "afterBegin",
+          "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Aconteceu algum erro ao realizar a requisição. Por favor, atualize a página e tente novamente </div>"
+        );
+      });
   }
 }

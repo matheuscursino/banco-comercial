@@ -74,7 +74,7 @@ switch($url)
         break;
 
     case '/bancorm/contacorrente/consultar':
-        ContaControler::consultar_mostrar();
+        ContaController::consultar_mostrar();
         break;
     
     case '/bancorm/contacorrente/atualizar':
@@ -82,11 +82,23 @@ switch($url)
         break;
 
     case '/bancorm/contacorrente/listar':
-        ContaCorrente::listar_mostrar();
+        ContaController::listar_mostrar();
         break;
 
     case '/bancorm/contacorrente/deletar':
-        ContaCorrente::deletar_mostrar();
+        ContaController::deletar_mostrar();
+        break;
+
+    //conta controllers
+
+    case '/bancorm/contacorrente/incluir/incluir':
+        $resposta = ContaController::incluir();
+        echo $resposta;
+        break;
+    
+    case '/bancorm/contacorrente/consultar/consultar':
+        $resposta = ContaController::consultar();
+        echo $resposta;
         break;
 
     default:

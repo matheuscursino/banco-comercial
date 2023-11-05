@@ -12,7 +12,7 @@ class ClienteModel
 
     public function incluir(ClienteModel $model){
 
-        $sql = "INSERT INTO cliente (cli_cpf, cli_nome, cli_telefone) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO clientes (cli_cpf, cli_nome, cli_telefone) VALUES (?, ?, ?)";
 
         $consulta = $this->conexao->prepare($sql);
 
@@ -37,7 +37,7 @@ class ClienteModel
     }
 
     public function deletar(ClienteModel $model){
-        $sql = "DELETE FROM cliente WHERE cli_cpf = ?";
+        $sql = "DELETE FROM clientes WHERE cli_cpf = ?";
 
         $consulta = $this->conexao->prepare($sql);
 
@@ -60,7 +60,7 @@ class ClienteModel
     }
 
     public function listar(ClienteModel $model){
-        $sql = "SELECT * FROM cliente";
+        $sql = "SELECT * FROM clientes";
 
         $consulta = $this->conexao->prepare($sql);
 
@@ -86,7 +86,7 @@ class ClienteModel
         switch($codigo)
         {
             case 1:
-                $sql = "SELECT * FROM cliente WHERE cli_cpf = ?";
+                $sql = "SELECT * FROM clientes WHERE cli_cpf = ?";
 
                 $consulta = $this->conexao->prepare($sql);
 
@@ -108,7 +108,7 @@ class ClienteModel
                     return $arrayResultados;
                 }
             case 2:
-                $sql = "SELECT * FROM cliente WHERE cli_nome = ?";
+                $sql = "SELECT * FROM clientes WHERE cli_nome = ?";
 
                 $consulta = $this->conexao->prepare($sql);
 
@@ -130,7 +130,7 @@ class ClienteModel
                     return $arrayResultados;
                 }
             case 3:
-                $sql = "SELECT * FROM cliente WHERE cli_telefone = ?";
+                $sql = "SELECT * FROM clientes WHERE cli_telefone = ?";
 
                 $consulta = $this->conexao->prepare($sql);
 
@@ -158,7 +158,7 @@ class ClienteModel
         switch($tipoAtualizacao)
         {
             case 1:
-                $sql = "UPDATE cliente SET cli_nome = ? WHERE cli_cpf = ?";
+                $sql = "UPDATE clientes SET cli_nome = ? WHERE cli_cpf = ?";
 
                 $consulta = $this->conexao->prepare($sql);
 
@@ -180,7 +180,7 @@ class ClienteModel
                     return $arrayResultados;
                 }
             case 2:
-                $sql = "UPDATE cliente SET cli_telefone = ? WHERE cli_cpf = ?";
+                $sql = "UPDATE clientes SET cli_telefone = ? WHERE cli_cpf = ?";
 
                 $consulta = $this->conexao->prepare($sql);
 

@@ -1,0 +1,48 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Arial";
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+form {
+  width: 80%;
+  height: auto;
+  margin: auto;
+  text-align: left;
+}
+
+.notification {
+  margin-top: 20px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+label {
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+  .navbar-dropdown .is-active {
+    display: block;
+  }
+  .navbar-dropdown:not(.is-active) {
+    display: none;
+  }
+}
+
+.box {
+  width: 80%;
+  margin: auto;
+  background-color: rgba(128, 128, 128, 0.034);
+}
+
+button {
+  margin-top: 10px;
+  margin-right: 10px;
+}

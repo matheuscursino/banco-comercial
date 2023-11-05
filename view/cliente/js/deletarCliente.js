@@ -2,13 +2,13 @@ var tabelaDiv = document.getElementById("tabelaDiv");
 var tabelaBody = document.getElementById("tabela-colunas");
 var all = document.getElementById("all");
 
-function consultar() {
+function consultar(tipoConsulta) {
   tabelaDiv.style.display = "none";
   var cpf_valor = document.getElementById("cpf").value;
 
   let formData = new FormData();
   formData.append("cpf", cpf_valor);
-  formData.append("tipoConsulta", 1);
+  formData.append("tipoConsulta", tipoConsulta);
 
   var init = {
     method: "POST",
@@ -59,10 +59,16 @@ function deletar() {
           "<div class='notification is-success'> <button onclick='this.parentNode.remove()' class='delete'></button> O cliente com o CPF indicado foi deletado! <strong> Clique <a href='/bancorm'>aqui</a> para manipular outras entidades.  </div>"
         );
       } else {
-        alert("Aconteceu algum erro ao tentar deletar o cliente");
+        all.insertAdjacentHTML(
+          "afterBegin",
+          "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Aconteceu algum erro ao tentar deletar o cliente. Por favor, atualize a página e tente novamente </div>"
+        );
       }
     })
-    .catch((error) => {
-      alert("Erro ao fazer a requisição");
+    .catch(() => {
+      all.insertAdjacentHTML(
+        "afterBegin",
+        "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Aconteceu algum erro ao realizar a requisição. Por favor, atualize a página e tente novamente </div>"
+      );
     });
 }

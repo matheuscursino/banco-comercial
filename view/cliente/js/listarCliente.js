@@ -34,10 +34,10 @@ function listar() {
         }
       });
     })
-    .catch((error) => {
+    .catch(() => {
       all.insertAdjacentHTML(
         "afterBegin",
-        "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Aconteceu algum erro ao fazer a requisição.  </div>"
+        "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Aconteceu algum erro ao realizar a requisição. Por favor, atualize a página e tente novamente </div>"
       );
     });
 }
