@@ -71,6 +71,20 @@ class ContaController
         }
     }
 
+    public static function listar(){
+        include 'Controller/util.controller.php';
+        include 'Model/conta.model.php';
+
+        $model = new ContaModel();
+
+        $array = $model->listar();
+        $arrayConteudo = $array["conteudo"];
+        $valorCodigo = $array["codigo"];
+
+        $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+        return $json;
+    }
+
 }
 
 ?>

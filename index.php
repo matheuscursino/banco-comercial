@@ -101,6 +101,11 @@ switch($url)
         echo $resposta;
         break;
 
+    case '/bancorm/contacorrente/listar/listar':
+        $resposta = ContaController::listar();
+        echo $resposta;
+        break;
+
     default:
         echo "erro 404";
         break;

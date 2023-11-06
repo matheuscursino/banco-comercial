@@ -71,6 +71,11 @@ function criarConta() {
         "afterBegin",
         "<div class='notification is-success'> <button onclick='this.parentNode.remove()' class='delete'></button> A conta foi criada com sucesso! <strong> Veja <a href='/bancorm'>aqui</a> as outras entidades que você pode manipular.  </div>"
       );
+    } else {
+      all.insertAdjacentHTML(
+        "afterBegin",
+        "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Aconteceu algum erro ao criar a conta.  </div>"
+      );
     }
   });
 }

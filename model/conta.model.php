@@ -71,6 +71,28 @@ class ContaModel
         }
     }
 
+    public function listar(){
+        $sql = "SELECT * FROM contas";
+
+        $consulta = $this->conexao->prepare($sql);
+
+        try {
+            $consulta->execute();
+            $resultadoConsulta = $consulta->fetchAll(PDO::FETCH_ASSOC);
+            $arrayResultados = array(
+                "conteudo" => $resultadoConsulta,
+                "codigo" => 200
+            );
+            return $arrayResultados;
+        }catch(PDOException $e){
+            $arrayResultados = array(
+                "conteudo" => null,
+                "codigo" => 400
+            );
+            return $arrayResultados;
+        }
+    }
+
 
 }
 

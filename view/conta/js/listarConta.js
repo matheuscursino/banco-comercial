@@ -16,10 +16,10 @@ function listar() {
           box.style.display = "table";
           array.forEach((element) => {
             tabelaBody.innerHTML += `<tr>
-                 <th>${contador}</th>
-                 <td>${element.cli_cpf}</td>
-                 <td>${element.cli_nome}</td>
-                 <td>${element.cli_telefone}</td>
+                 <td>${element.con_id}</td>
+                 <td>${element.con_saldo}</td>
+                 <td>${element.con_dataCriacao}</td>
+                 <td>${element.con_dono}</td>
                  </tr>`;
           });
         } else {
