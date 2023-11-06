@@ -53,7 +53,13 @@ class ContaController
         switch($tipoConsulta)
         {
             case 1:
-                break;
+                $model->id = $_POST['id'];
+                $array = $model->consultar($model, $tipoConsulta);
+                $arrayConteudo = $array["conteudo"];
+                $valorCodigo = $array["codigo"];
+
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+                return $json;
             case 2:
                 break;
             case 3:
@@ -85,6 +91,23 @@ class ContaController
         return $json;
     }
 
+    public static function deletar(){
+        include 'Controller/util.controller.php';
+        include 'Model/conta.model.php';
+
+        $model = new ContaModel();
+
+        $model->id = $_POST["id"];
+
+        $array = $model->deletar($model);
+
+
+        $arrayConteudo = $array["conteudo"];
+        $valorCodigo = $array["codigo"];
+
+        $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+        return $json;
+    }
 }
 
 ?>

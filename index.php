@@ -106,6 +106,11 @@ switch($url)
         echo $resposta;
         break;
 
+    case '/bancorm/contacorrente/deletar/apagar':
+        $resposta = ContaController::deletar();
+        echo $resposta;
+        break;
+
     default:
         echo "erro 404";
         break;

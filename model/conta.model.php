@@ -3,7 +3,7 @@
 class ContaModel
 {
     private $conexao;
-    public $saldo, $cpfDono;
+    public $id, $saldo, $cpfDono;
 
     public function __construct(){
         $dsn = "mysql:host=localhost;dbname=bancorm";
@@ -41,7 +41,27 @@ class ContaModel
         switch ($tipoConsulta)
         {
             case 1: //consulta por id
-                break;
+                $sql = "SELECT * FROM contas WHERE con_id = ?";
+
+                $consulta = $this->conexao->prepare($sql);
+
+                $consulta->bindValue(1, $model->id);
+
+                try{
+                    $consulta->execute();
+                    $resultadoConsulta = $consulta->fetch(PDO::FETCH_ASSOC);
+                    $arrayResultados = array(
+                        "conteudo" => $resultadoConsulta,
+                        "codigo" => 200
+                    );
+                    return $arrayResultados;
+                } catch(PDOException $e) {
+                    $arrayResultados = array(
+                        "conteudo" => null,
+                        "codigo" => 400
+                    );
+                    return $arrayResultados;
+                }
             case 2: //consulta por saldo
                 break;
             case 3: //consulta por data
@@ -85,6 +105,29 @@ class ContaModel
             );
             return $arrayResultados;
         }catch(PDOException $e){
+            $arrayResultados = array(
+                "conteudo" => null,
+                "codigo" => 400
+            );
+            return $arrayResultados;
+        }
+    }
+
+    public function deletar(ContaModel $model){
+        $sql = "DELETE FROM contas WHERE con_id = ?";
+
+        $consulta = $this->conexao->prepare($sql);
+
+        $consulta->bindValue(1, $model->id);
+
+        try {
+            $consulta->execute();
+            $arrayResultados = array(
+                "conteudo" => null,
+                "codigo" => 200
+            );
+            return $arrayResultados;
+        } catch(PDOException $e) {
             $arrayResultados = array(
                 "conteudo" => null,
                 "codigo" => 400
