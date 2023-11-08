@@ -199,33 +199,34 @@ class ContaModel
                             );
                             return $arrayResultados;
                         }
-            case 4: //consulta por cpf
-                $sql = "SELECT * FROM contas WHERE con_dono = ?";
-
-                $consulta = $this->conexao->prepare($sql);
-
-                $consulta->bindValue(1,$model->cpfDono);
-
-                try {
-                    $consulta->execute();
-                    $resultadoConsulta = $consulta->fetch(PDO::FETCH_ASSOC);
-                    $arrayResultados = array(
-                        "conteudo" => $resultadoConsulta,
-                        "codigo" => 200
-                    );
-                    return $arrayResultados;
-                } catch(PDOException $e) {
-                    $arrayResultados = array(
-                        "conteudo" => null,
-                        "codigo" => 400
-                    );
-                    return $arrayResultados;
-                }
+                    }
+                case 4: //consulta por cpf
+                    $sql = "SELECT * FROM contas WHERE con_dono = ?";
+                
+                    $consulta = $this->conexao->prepare($sql);
+                
+                    $consulta->bindValue(1,$model->cpfDono);
+                
+                    try {
+                        $consulta->execute();
+                        $resultadoConsulta = $consulta->fetch(PDO::FETCH_ASSOC);
+                        $arrayResultados = array(
+                            "conteudo" => $resultadoConsulta,
+                            "codigo" => 200
+                        );
+                        return $arrayResultados;
+                    } catch(PDOException $e) {
+                        $arrayResultados = array(
+                            "conteudo" => null,
+                            "codigo" => 400
+                        );
+                        return $arrayResultados;
+                    }
         }
-    }
-}
 
-    public static function listar(){
+    }
+
+    public function listar(ContaModel $model){
         $sql = "SELECT * FROM contas";
 
         $consulta = $this->conexao->prepare($sql);
@@ -269,8 +270,7 @@ class ContaModel
             return $arrayResultados;
         }
     }
-
-
 }
+
 
 ?>
