@@ -111,6 +111,11 @@ switch($url)
         echo $resposta;
         break;
 
+    case '/bancorm/contacorrente/atualizar/atualizar':
+        $resposta = ContaController::atualizar();
+        echo $resposta;
+        break;
+
     default:
         echo "erro 404";
         break;

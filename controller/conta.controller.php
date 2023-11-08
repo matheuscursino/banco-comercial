@@ -122,6 +122,42 @@ class ContaController
         $json = UtilController::json_response($valorCodigo, $arrayConteudo);
         return $json;
     }
+
+    public static function atualizar(){
+        include 'Controller/util.controller.php';
+        include 'Model/conta.model.php';
+
+        $model = new ContaModel();
+
+
+        $tipoAtualizacao = $_POST["tipoAtualizacao"];
+
+        switch($tipoAtualizacao)
+        {
+            case 1:
+                $model->id = $_POST["id"];
+                $model->saldo = $_POST["saldo"];
+
+                $array = $model->atualizar($model, $tipoAtualizacao);
+
+                $arrayConteudo = $array["conteudo"];
+                $valorCodigo = $array["codigo"];
+
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+                return $json;
+            case 2:
+                $model->id = $_POST["id"];
+                $model->dataCriacao = $_POST["data"];
+
+                $array = $model->atualizar($model, $tipoAtualizacao);
+
+                $arrayConteudo = $array["conteudo"];
+                $valorCodigo = $array["codigo"];
+
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+                return $json;
+        }
+    }
 }
 
 ?>

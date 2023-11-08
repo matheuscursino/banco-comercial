@@ -270,6 +270,55 @@ class ContaModel
             return $arrayResultados;
         }
     }
+
+    public function atualizar(ContaModel $model, $tipoAtualizacao){
+        switch($tipoAtualizacao){
+            case 1:
+                $sql = "UPDATE contas SET con_saldo = ? WHERE con_id = ?";
+
+                $consulta = $this->conexao->prepare($sql);
+
+                $consulta->bindValue(1, $model->saldo);
+                $consulta->bindValue(2, $model->id);
+
+                try{
+                    $consulta->execute();
+                    $arrayResultados = array(
+                        "conteudo" => null,
+                        "codigo" => 200
+                    );
+                    return $arrayResultados;
+                }catch(PDOException $e){
+                    $arrayResultados = array(
+                        "conteudo" => null,
+                        "codigo" => 400
+                    );
+                    return $arrayResultados;
+                }
+            case 2:
+                $sql = "UPDATE contas SET con_dataCriacao = ? WHERE con_id = ?";
+
+                $consulta = $this->conexao->prepare($sql);
+
+                $consulta->bindValue(1, $model->dataCriacao);
+                $consulta->bindValue(2, $model->id);
+
+                try{
+                    $consulta->execute();
+                    $arrayResultados = array(
+                        "conteudo" => null,
+                        "codigo" => 200
+                    );
+                    return $arrayResultados;
+                }catch(PDOException $e){
+                    $arrayResultados = array(
+                        "conteudo" => null,
+                        "codigo" => 400
+                    );
+                    return $arrayResultados;
+                }
+        }
+    }
 }
 
 
