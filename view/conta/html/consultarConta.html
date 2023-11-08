@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Incluir cliente</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../view/public/images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../view/public/images/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../view/public/images/site.webmanifest" />
+    <link rel="stylesheet" href="../view/conta/css/consultarConta.css" />
+  </head>
+  <body>
+    <nav class="navbar is-light">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/bancorm">
+          <img
+            src="../view/public/images/favicon-32x32.png"
+            width="32"
+            height="32"
+          />
+        </a>
+        <div
+          id="burger"
+          class="navbar-burger"
+          data-target="navbarExampleTransparentExample"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <div id="navbarExampleTransparentExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="/bancorm"> Home </a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link"> Cliente </a>
+            <div class="navbar-dropdown is-boxed">
+              <a class="navbar-item" href="/bancorm/cliente/incluir">
+                Incluir
+              </a>
+              <a class="navbar-item" href="/bancorm/cliente/atualizar">
+                Atualizar
+              </a>
+              <a class="navbar-item" href="/bancorm/cliente/consultar">
+                Consultar
+              </a>
+              <a class="navbar-item" href="/bancorm/cliente/listar"> Listar </a>
+              <a class="navbar-item" href="/bancorm/cliente/deletar">
+                Deletar
+              </a>
+            </div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link"> Conta corrente </a>
+            <div class="navbar-dropdown is-boxed">
+              <a class="navbar-item" href="/bancorm/contacorrente/incluir">
+                Incluir
+              </a>
+              <a class="navbar-item" href="/bancorm/contacorrente/atualizar">
+                Atualizar
+              </a>
+              <a class="navbar-item" href="/bancorm/contacorrente/consultar">
+                Consultar
+              </a>
+              <a class="navbar-item" href="/bancorm/contacorrente/listar">
+                Listar
+              </a>
+              <a class="navbar-item" href="/bancorm/contacorrente/deletar">
+                Deletar
+              </a>
+            </div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link"> Transação </a>
+            <div class="navbar-dropdown is-boxed">
+              <a class="navbar-item" href="/bancorm/transacao/incluir">
+                Incluir
+              </a>
+              <a class="navbar-item" href="/bancorm/transacao/atualizar">
+                Atualizar
+              </a>
+              <a class="navbar-item" href="/bancorm/transacao/consultar">
+                Consultar
+              </a>
+              <a class="navbar-item" href="/bancorm/transacao/listar">
+                Listar
+              </a>
+              <a class="navbar-item" href="/bancorm/transacao/deletar">
+                Deletar
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="content" id="all">
+      <h1>CONSULTAR CONTA CORRENTE</h1>
+      <div class="box">
+        <h2>Consultar por ID</h2>
+        <form class="form">
+          <div class="field">
+            <label class="label">ID da conta: </label>
+            <div class="control">
+              <input
+                class="input"
+                placeholder="Digite o id da conta aqui..."
+                type="number"
+                name="id"
+                id="id"
+              />
+            </div>
+          </div>
+          <br />
+          <button class="button is-link" onclick="consultar(1)" type="submit">
+            Consultar
+          </button>
+          <button class="button is-light is-link" onclick="form.reset()">
+            Limpar
+          </button>
+        </form>
+      </div>
+      <br />
+      <div class="box">
+        <h2>Consultar por saldo</h2>
+        <form class="form">
+          <div class="field">
+            <label class="label">Saldo da conta: </label>
+            <div class="control">
+              <select id="saldoOperador">
+                <option value="maior">></option>
+                <option value="menor"><</option>
+                <option value="igual">=</option>
+              </select>
+              <input
+                class="input"
+                placeholder="Digite o saldo da conta aqui..."
+                type="text"
+                name="saldo"
+                id="saldo"
+              />
+            </div>
+          </div>
+          <br />
+          <button class="button is-link" onclick="consultar(2)" type="submit">
+            Consultar
+          </button>
+          <button class="button is-light is-link" onclick="form.reset()">
+            Limpar
+          </button>
+        </form>
+      </div>
+      <div class="box">
+        <h2>Consultar por data de criação</h2>
+        <form class="form">
+          <div class="field">
+            <label class="label">Data de criação: </label>
+            <div class="control">
+              <select id="operadorData">
+                <option value="maior">></option>
+                <option value="menor"><</option>
+                <option value="igual">=</option>
+              </select>
+              <input
+                class="input"
+                placeholder="Digite a data de criacao da conta aqui..."
+                type="text"
+                name="dataCriacao"
+                id="dataCriacao"
+              />
+            </div>
+          </div>
+          <br />
+          <button class="button is-link" onclick="consultar(3)" type="submit">
+            Consultar
+          </button>
+          <button class="button is-light is-link" onclick="form.reset()">
+            Limpar
+          </button>
+        </form>
+      </div>
+      <div class="box">
+        <h2>Consultar por CPF</h2>
+        <form class="form">
+          <div class="field">
+            <label class="label">CPF do dono da conta: </label>
+            <div class="control">
+              <input
+                class="input"
+                placeholder="Digite o cpf aqui..."
+                type="number"
+                name="cpf"
+                id="cpf"
+              />
+            </div>
+          </div>
+          <br />
+          <button class="button is-link" onclick="consultar(1)" type="submit">
+            Consultar
+          </button>
+          <button class="button is-light is-link" onclick="form.reset()">
+            Limpar
+          </button>
+        </form>
+      </div>
+    </div>
+    <div id="modal" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="modal-card-head">
+          <div class="modal-card-title">
+            <p>Resultado da consulta</p>
+          </div>
+        </div>
+        <div class="modal-card-body">
+          <table class="table is-bordered is-hoverable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Saldo da conta</th>
+                <th>Data de Criação</th>
+                <th>CPF do dono</th>
+              </tr>
+            </thead>
+            <tbody id="tabela"></tbody>
+          </table>
+        </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+  </body>
+  <script src="../view/conta/js/consultarConta.js"></script>
+  <script src="../view/public/js/common.js"></script>
+</html>

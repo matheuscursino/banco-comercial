@@ -3,7 +3,7 @@
 class ContaModel
 {
     private $conexao;
-    public $id, $saldo, $cpfDono;
+    public $id, $saldo, $cpfDono, $dataCriacao, $operador;
 
     public function __construct(){
         $dsn = "mysql:host=localhost;dbname=bancorm";
@@ -63,9 +63,142 @@ class ContaModel
                     return $arrayResultados;
                 }
             case 2: //consulta por saldo
-                break;
+                switch($model->operador){
+                    case "maior":
+                        $sql = "SELECT * FROM contas WHERE con_saldo > ?";
+
+                        $consulta = $this->conexao->prepare($sql);
+
+                        $consulta->bindValue(1, $model->saldo);
+
+                        try{
+                            $consulta->execute();
+                            $resultadoConsulta = $consulta->fetch(PDO::FETCH_ASSOC);
+                            $arrayResultados = array(
+                                "conteudo" => $resultadoConsulta,
+                                "codigo" => 200
+                            );
+                            return $arrayResultados;
+                        } catch(PDOException $e) {
+                            $arrayResultados = array(
+                                "conteudo" => null,
+                                "codigo" => 400
+                            );
+                            return $arrayResultados;
+                        }
+                    case "menor":
+                        $sql = "SELECT * FROM contas WHERE con_saldo < ?";
+
+                        $consulta = $this->conexao->prepare($sql);
+                                            
+                        $consulta->bindValue(1, $model->saldo);
+                                            
+                        try{
+                            $consulta->execute();
+                            $resultadoConsulta = $consulta->fetch(PDO::FETCH_ASSOC);
+                            $arrayResultados = array(
+                                "conteudo" => $resultadoConsulta,
+                                "codigo" => 200
+                            );
+                            return $arrayResultados;
+                        } catch(PDOException $e) {
+                            $arrayResultados = array(
+                                "conteudo" => null,
+                                "codigo" => 400
+                            );
+                            return $arrayResultados;
+                        }
+                    case "igual":
+                        $sql = "SELECT * FROM contas WHERE con_saldo < ?";
+
+                        $consulta = $this->conexao->prepare($sql);
+                                            
+                        $consulta->bindValue(1, $model->saldo);
+                                            
+                        try{
+                            $consulta->execute();
+                            $resultadoConsulta = $consulta->fetch(PDO::FETCH_ASSOC);
+                            $arrayResultados = array(
+                                "conteudo" => $resultadoConsulta,
+                                "codigo" => 200
+                            );
+                            return $arrayResultados;
+                        } catch(PDOException $e) {
+                            $arrayResultados = array(
+                                "conteudo" => null,
+                                "codigo" => 400
+                            );
+                            return $arrayResultados;
+                        }
+                }
             case 3: //consulta por data
-                break;
+                switch($model->operador){
+                    case "maior":
+                        $sql = "SELECT * FROM contas WHERE con_dataCriacao > ?";
+
+                        $consulta = $this->conexao->prepare($sql);
+
+                        $consulta->bindValue(1, $model->dataCriacao);
+
+                        try{
+                            $consulta->execute();
+                            $resultadoConsulta = $consulta->fetch(PDO::FETCH_ASSOC);
+                            $arrayResultados = array(
+                                "conteudo" => $resultadoConsulta,
+                                "codigo" => 200
+                            );
+                            return $arrayResultados;
+                        } catch(PDOException $e) {
+                            $arrayResultados = array(
+                                "conteudo" => null,
+                                "codigo" => 400
+                            );
+                            return $arrayResultados;
+                        }
+                    case "menor":
+                        $sql = "SELECT * FROM contas WHERE con_dataCriacao < ?";
+
+                        $consulta = $this->conexao->prepare($sql);
+                                            
+                        $consulta->bindValue(1, $model->dataCriacao);
+                                            
+                        try{
+                            $consulta->execute();
+                            $resultadoConsulta = $consulta->fetch(PDO::FETCH_ASSOC);
+                            $arrayResultados = array(
+                                "conteudo" => $resultadoConsulta,
+                                "codigo" => 200
+                            );
+                            return $arrayResultados;
+                        } catch(PDOException $e) {
+                            $arrayResultados = array(
+                                "conteudo" => null,
+                                "codigo" => 400
+                            );
+                            return $arrayResultados;
+                        }
+                    case "igual":
+                        $sql = "SELECT * FROM contas WHERE con_dataCriacao < ?";
+
+                        $consulta = $this->conexao->prepare($sql);
+                                            
+                        $consulta->bindValue(1, $model->dataCriacao);
+                                            
+                        try{
+                            $consulta->execute();
+                            $resultadoConsulta = $consulta->fetch(PDO::FETCH_ASSOC);
+                            $arrayResultados = array(
+                                "conteudo" => $resultadoConsulta,
+                                "codigo" => 200
+                            );
+                            return $arrayResultados;
+                        } catch(PDOException $e) {
+                            $arrayResultados = array(
+                                "conteudo" => null,
+                                "codigo" => 400
+                            );
+                            return $arrayResultados;
+                        }
             case 4: //consulta por cpf
                 $sql = "SELECT * FROM contas WHERE con_dono = ?";
 
@@ -90,8 +223,9 @@ class ContaModel
                 }
         }
     }
+}
 
-    public function listar(){
+    public static function listar(){
         $sql = "SELECT * FROM contas";
 
         $consulta = $this->conexao->prepare($sql);

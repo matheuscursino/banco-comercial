@@ -61,9 +61,23 @@ class ContaController
                 $json = UtilController::json_response($valorCodigo, $arrayConteudo);
                 return $json;
             case 2:
-                break;
+                $model->saldo = $_POST["saldo"];
+                $model->operador = $_POST["saldoOperador"];
+                $array = $model->consultar($model, $tipoConsulta);
+                $arrayConteudo = $array["conteudo"];
+                $valorCodigo = $array["codigo"];
+
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+                return $json;
             case 3:
-                break;
+                $model->dataCriacao = $_POST["data"];
+                $model->operador = $_POST["dataOperador"];
+                $array = $model->consultar($model, $tipoConsulta);
+                $arrayConteudo = $array["conteudo"];
+                $valorCodigo = $array["codigo"];
+
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+                return $json;
             case 4:
                 $model->cpfDono = $_POST["cpf"];
 

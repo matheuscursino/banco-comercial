@@ -16,7 +16,6 @@ function listar() {
           box.style.display = "table";
           array.forEach((element) => {
             tabelaBody.innerHTML += `<tr>
-                 <th>${contador}</th>
                  <td>${element.cli_cpf}</td>
                  <td>${element.cli_nome}</td>
                  <td>${element.cli_telefone}</td>
