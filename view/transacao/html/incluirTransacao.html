@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Consultar cliente</title>
+    <title>Incluir transação</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
@@ -19,7 +19,7 @@
       href="../view/public/images/favicon-16x16.png"
     />
     <link rel="manifest" href="../view/public/images/site.webmanifest" />
-    <link rel="stylesheet" href="../view/cliente/css/consultarCliente.css" />
+    <link rel="stylesheet" href="../view/transacao/css/incluirTransacao.css" />
   </head>
   <body>
     <nav class="navbar is-light">
@@ -127,104 +127,54 @@
       </div>
     </nav>
     <div class="content" id="all">
-      <h1>CONSULTAR CLIENTE</h1>
+      <h1>INCLUIR TRANSAÇÃO</h1>
       <div class="box">
-        <h2>Consultar por CPF</h2>
-        <form class="form">
+        <form id="formulario">
           <div class="field">
-            <label class="label">CPF do cliente: </label>
+            <label class="label">CPF do remetente da transação: </label>
             <div class="control">
               <input
                 class="input"
-                placeholder="Digite o cpf do cliente aqui..."
+                placeholder="Digite o cpf do remetente aqui..."
                 type="number"
-                name="cpf"
-                id="cpf"
+                name="cpfRemetente"
+                id="cpfRemetente"
               />
             </div>
           </div>
-          <br />
-          <button class="button is-link" onclick="consultar(1)" type="submit">
-            Consultar
-          </button>
-          <button class="button is-light is-link" onclick="form.reset()">
-            Limpar
-          </button>
-        </form>
-      </div>
-      <div class="box">
-        <h2>Consultar por nome</h2>
-        <form class="form">
+
           <div class="field">
-            <label class="label">Nome do cliente: </label>
+            <label class="label">CPF do destinatario da transação: </label>
             <div class="control">
               <input
                 class="input"
-                placeholder="Digite o nome cliente aqui..."
-                type="text"
-                name="nome"
-                id="nome"
-              />
-            </div>
-          </div>
-          <br />
-          <button class="button is-link" onclick="consultar(2)" type="submit">
-            Consultar
-          </button>
-          <button class="button is-light is-link" onclick="form.reset()">
-            Limpar
-          </button>
-        </form>
-      </div>
-      <div class="box">
-        <h2>Consultar por telefone</h2>
-        <form class="form">
-          <div class="field">
-            <label class="label">Telefone do cliente: </label>
-            <div class="control">
-              <input
-                class="input"
-                placeholder="Digite o telefone do cliente aqui..."
+                placeholder="Digite o cpf do destinatario aqui..."
                 type="number"
-                name="telefone"
-                id="telefone"
+                name="cpfDestinatario"
+                id="cpfDestinatario"
               />
             </div>
           </div>
+
+          <label class="label">Valor da transação: </label>
+          <input
+            class="input"
+            placeholder="Digite o valor da transação aqui..."
+            type="number"
+            name="valorTransacao"
+            id="valorTransacao"
+          />
           <br />
-          <button class="button is-link" onclick="consultar(3)" type="submit">
-            Consultar
+          <button class="button is-link" onclick="salvar()" type="submit">
+            Enviar
           </button>
           <button class="button is-light is-link" onclick="form.reset()">
             Limpar
           </button>
         </form>
       </div>
-    </div>
-    <div id="modal" class="modal">
-      <div class="modal-background"></div>
-      <div class="modal-content">
-        <div class="modal-card-head">
-          <div class="modal-card-title">
-            <p>Resultado da consulta</p>
-          </div>
-        </div>
-        <div class="modal-card-body">
-          <table class="table is-bordered is-hoverable">
-            <thead>
-              <tr>
-                <th>CPF</th>
-                <th>Nome</th>
-                <th>Telefone</th>
-              </tr>
-            </thead>
-            <tbody id="tabela"></tbody>
-          </table>
-        </div>
-      </div>
-      <button class="modal-close is-large" aria-label="close"></button>
     </div>
   </body>
-  <script src="../view/cliente/js/consultarCliente.js"></script>
+  <script src="../view/transacao/js/incluirTransacao.js"></script>
   <script src="../view/public/js/common.js"></script>
 </html>

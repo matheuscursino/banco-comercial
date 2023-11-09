@@ -2,6 +2,7 @@
 
 include 'Controller/cliente.controller.php';
 include 'Controller/conta.controller.php';
+include 'Controller/transacao.controller.php';
 
 $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
@@ -114,6 +115,33 @@ switch($url)
     case '/bancorm/contacorrente/atualizar/atualizar':
         $resposta = ContaController::atualizar();
         echo $resposta;
+        break;
+    
+
+    // transacao views
+
+    case '/bancorm/transacao':
+        TransacaoController::home_mostrar();
+        break;
+
+    case '/bancorm/transacao/incluir':
+        TransacaoController::incluir_mostrar();
+        break;
+    
+    case '/bancorm/transacao/atualizar':
+        TransacaoController::atualizar_mostrar();
+        break;
+
+    case '/bancorm/transacao/consultar':
+        TransacaoController::consultar_mostrar();
+        break;
+
+    case '/bancorm/transacao/listar':
+        TransacaoController::listar_mostrar();
+        break;
+
+    case '/bancorm/transacao/deletar':
+        TransacaoController::deletar_mostrar();
         break;
 
     default:
