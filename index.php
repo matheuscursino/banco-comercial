@@ -144,6 +144,13 @@ switch($url)
         TransacaoController::deletar_mostrar();
         break;
 
+    /////////
+
+    case '/bancorm/transacao/incluir/salvar':
+        $resposta = TransacaoController::incluir();
+        echo $resposta;
+        break;
+
     default:
         echo "erro 404";
         break;

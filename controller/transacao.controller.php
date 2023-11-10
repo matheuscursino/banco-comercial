@@ -24,6 +24,26 @@ class TransacaoController {
     public static function deletar_mostrar(){
         include 'View/transacao/html/deletarTransacao.html';
     }
+
+    public static function incluir(){
+        include 'Controller/util.controller.php';
+        include 'Model/transacao.model.php';
+
+        $model = new TransacaoModel();
+
+        $model->idRemetente = $_POST["idRemetente"];
+        $model->idDestinatario = $_POST["idDestinatario"];
+        $model->valorTransacao = $_POST["valorTransacao"];
+
+        $array = $model->incluir($model);
+
+        $arrayConteudo = $array["conteudo"];
+        $valorCodigo = $array["codigo"];
+
+        $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+        
+        return $json;
+    }
 }
 
 ?>
