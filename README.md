@@ -54,3 +54,15 @@ CREATE TABLE contas(
   FOREIGN KEY (con_dono) REFERENCES clientes (cli_cpf)
 )
 ```
+
+Tabela **transações**:
+```sql
+CREATE TABLE transacoes(
+    tra_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    tra_contaDestinataria INT,
+    tra_contaRemetente INT,
+    tra_valor DECIMAL(8,2),
+    FOREIGN KEY (tra_contaDestinataria) REFERENCES contas (con_id),
+    FOREIGN KEY (tra_contaRemetente) REFERENCES contas (con_id)
+)
+```
