@@ -80,12 +80,54 @@ class TransacaoController {
                 $json = UtilController::json_response($valorCodigo, $arrayConteudo);
                 return $json;
             case 2:
-                break;
+                $model->idRemetente = $_POST["idRemetente"];
+                $model->tipoConsulta = $tipoConsulta;
+
+                $array = $model->consultar($model, $tipoConsulta);
+                $arrayConteudo = $array["conteudo"];
+                $valorCodigo = $array["codigo"];
+
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+                return $json;
             case 3:
-                break;
+                $model->idDestinatario = $_POST["idDestinatario"];
+                $model->tipoConsulta = $tipoConsulta;
+
+                $array = $model->consultar($model, $tipoConsulta);
+                $arrayConteudo = $array["conteudo"];
+                $valorCodigo = $array["codigo"];
+
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+                return $json;
             case 4:
-                break;
+                $model->valorTransacao = $_POST["valorTransacao"];
+                $model->operador = $_POST["operador"];
+
+
+                $array = $model->consultar($model, $tipoConsulta);
+                $arrayConteudo = $array["conteudo"];
+                $valorCodigo = $array["codigo"];
+
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+                return $json;
         }
+    }
+
+    public static function deletar(){
+        include 'Controller/util.controller.php';
+        include 'Model/transacao.model.php';
+
+        $model = new TransacaoModel();
+
+        $model->idTransacao = $_POST["idTransacao"];
+
+        $array = $model->deletar($model);
+
+        $arrayConteudo = $array["conteudo"];
+        $valorCodigo = $array["codigo"];
+        
+        $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+        return $json;
     }
 }
 

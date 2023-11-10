@@ -63,7 +63,7 @@ function consultar(tipoConsulta) {
       var operadorValor_valor = document.getElementById("operadorValor").value;
 
       let formData4 = new FormData();
-      formData4.append("idDestinatario", idDestinatario_valor);
+      formData4.append("valorTransacao", valorTransacao_valor);
       formData4.append("operador", operadorValor_valor);
       formData4.append("tipoConsulta", tipoConsulta);
 
@@ -83,6 +83,7 @@ function consultar(tipoConsulta) {
           var arrayTransacoes = data.message;
           tabela.innerHTML = "";
           arrayTransacoes.forEach((elemento) => {
+            console.log(elemento);
             tabela.innerHTML += `<tr>
             <td>${elemento.tra_id}</td>
             <td>${elemento.tra_contaRemetente}</td>

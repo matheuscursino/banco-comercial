@@ -162,6 +162,11 @@ switch($url)
         echo $resposta;
         break;
 
+    case '/bancorm/transacao/deletar/apagar':
+        $resposta = TransacaoController::deletar();
+        echo $resposta;
+        break;
+
 
     default:
         echo "erro 404";
