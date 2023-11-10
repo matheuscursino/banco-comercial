@@ -30,6 +30,27 @@ A camada **model** é responsável por acessar o banco de dados e realizar as op
 A camada **view** é responsável por possuir todos os arquivos que o usuário irá ver/interagir. <br>
 A camada **controller** é responsável por receber as requisições da camada **view** e posteriormente chamar a camada **model** para realizar as operações no BD.
 
-##MySql
+### MySql
 
-Em seguida, iremos exibir 
+As tabelas SQL foram feitas da seguinte maneira:
+
+
+Tabela **clientes**:
+```sql
+CREATE TABLE clientes(
+  cli_cpf BIGINT NOT NULL PRIMARY KEY,
+  CLI_nome VARCHAR(30),
+  cli_telefone BIGINT
+)
+```
+
+Tabela **contas**:
+```sql
+CREATE TABLE contas(
+  con_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  con_saldo DECIMAL(8,2),
+  con_dataCriacao DATE,
+  con_dono BIGINT,
+  FOREIGN KEY (con_dono) REFERENCES clientes (cli_cpf)
+)
+```
