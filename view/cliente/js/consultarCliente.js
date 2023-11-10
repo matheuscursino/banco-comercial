@@ -59,14 +59,16 @@ function consultar(tipoConsulta) {
     fetch("consultar/consultar", init)
       .then((response) =>
         response.json().then((data) => {
-          if (data.message !== false) {
-            var objCliente = data.message;
+          if (data.message.length > 0) {
+            var arrayCliente = data.message;
             tabela.innerHTML = "";
-            tabela.innerHTML += `<tr>
-             <td>${objCliente.cli_cpf}</td>
-             <td>${objCliente.cli_nome}</td>
-             <td>${objCliente.cli_telefone}</td>
-             </tr>`;
+            arrayCliente.forEach((elemento) => {
+              tabela.innerHTML += `<tr>
+              <td>${elemento.cli_cpf}</td>
+              <td>${elemento.cli_nome}</td>
+              <td>${elemento.cli_telefone}</td>
+              </tr>`;
+            });
             modal.classList.add("is-active");
           } else {
             all.insertAdjacentHTML(

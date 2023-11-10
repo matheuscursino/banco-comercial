@@ -37,6 +37,60 @@ class TransacaoModel{
         }
 
     }
+
+    public function listar(TransacaoModel $model){
+        $sql = "SELECT * FROM transacoes";
+
+        $consulta = $this->conexao->prepare($sql);
+    
+        try{
+            $consulta->execute();
+            $resultadoConsulta = $consulta->fetchAll(PDO::FETCH_ASSOC);
+            $arrayResultados = array(
+                "conteudo" => $resultadoConsulta,
+                "codigo" => 200
+            );
+            return $arrayResultados;
+        }catch(PDOException $e){
+            $arrayResultados = array(
+                "conteudo" => null,
+                "codigo" => 400
+            );
+            return $arrayResultados;
+        }
+    }
+
+    public function consultar(TransacaoModel $model, $tipoConsulta){
+        switch($tipoConsulta){
+            case 1:
+                $sql = "SELECT * FROM transacoes WHERE tra_id = ?";
+
+                $consulta = $this->conexao->prepare($sql);
+
+                $consulta->bindValue(1, $model->idTransacao);
+                try{
+                    $consulta->execute();
+                    $resultadoConsulta = $consulta->fetchAll(PDO::FETCH_ASSOC);
+                    $arrayResultados = array(
+                        "conteudo" => $resultadoConsulta,
+                        "codigo" => 200
+                    );
+                    return $arrayResultados;
+                }catch(PDOException $e){
+                    $arrayResultados = array(
+                        "conteudo" => null,
+                        "codigo" => 400
+                    );
+                    return $arrayResultados;
+                }
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+        }
+    }
 }
 
 ?>

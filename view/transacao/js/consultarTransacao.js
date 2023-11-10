@@ -15,10 +15,10 @@ closeElements.forEach((elemento) => {
 function consultar(tipoConsulta) {
   switch (tipoConsulta) {
     case 1:
-      var id_valor = document.getElementById("id").value;
+      var idTransacao_valor = document.getElementById("idTransacao").value;
 
       let formData = new FormData();
-      formData.append("id", id_valor);
+      formData.append("idTransacao", idTransacao_valor);
       formData.append("tipoConsulta", tipoConsulta);
 
       var init = {
@@ -29,12 +29,10 @@ function consultar(tipoConsulta) {
       requisicaoConsulta(init);
       break;
     case 2:
-      var saldo_valor = document.getElementById("saldo").value;
-      var saldo_operador = document.getElementById("saldoOperador").value;
+      var idRemetente_valor = document.getElementById("idRemetente").value;
 
       let formData2 = new FormData();
-      formData2.append("saldo", saldo_valor);
-      formData2.append("saldoOperador", saldo_operador);
+      formData2.append("idRemetente", idRemetente_valor);
       formData2.append("tipoConsulta", tipoConsulta);
 
       var init2 = {
@@ -45,12 +43,11 @@ function consultar(tipoConsulta) {
       requisicaoConsulta(init2);
       break;
     case 3:
-      var data_valor = document.getElementById("dataCriacao").value;
-      var data_operador = document.getElementById("operadorData").value;
+      var idDestinatario_valor =
+        document.getElementById("idDestinatario").value;
 
       let formData3 = new FormData();
-      formData3.append("data", data_valor);
-      formData3.append("dataOperador", data_operador);
+      formData3.append("idDestinatario", idDestinatario_valor);
       formData3.append("tipoConsulta", tipoConsulta);
 
       var init3 = {
@@ -61,10 +58,13 @@ function consultar(tipoConsulta) {
       requisicaoConsulta(init3);
       break;
     case 4:
-      var cpf_valor = document.getElementById("cpf").value;
+      var valorTransacao_valor =
+        document.getElementById("valorTransacao").value;
+      var operadorValor_valor = document.getElementById("operadorValor").value;
 
       let formData4 = new FormData();
-      formData4.append("cpf", cpf_valor);
+      formData4.append("idDestinatario", idDestinatario_valor);
+      formData4.append("operador", operadorValor_valor);
       formData4.append("tipoConsulta", tipoConsulta);
 
       var init3 = {
@@ -80,14 +80,14 @@ function consultar(tipoConsulta) {
     fetch("consultar/consultar", init).then((response) =>
       response.json().then((data) => {
         if (data.message.length > 0) {
-          var arrayContas = data.message;
+          var arrayTransacoes = data.message;
           tabela.innerHTML = "";
-          arrayContas.forEach((element) => {
+          arrayTransacoes.forEach((elemento) => {
             tabela.innerHTML += `<tr>
-            <td>${element.con_id}</td>
-            <td>${element.con_saldo}</td>
-            <td>${element.con_dataCriacao}</td>
-            <td>${element.con_dono}</td>
+            <td>${elemento.tra_id}</td>
+            <td>${elemento.tra_contaRemetente}</td>
+            <td>${elemento.tra_contaDestinataria}</td>
+            <td>${elemento.tra_valor}</td>
             </tr>`;
           });
           modal.classList.add("is-active");

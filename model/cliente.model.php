@@ -94,7 +94,7 @@ class ClienteModel
 
                 try{
                     $consulta->execute();
-                    $resultadoConsulta = $consulta->fetch(PDO::FETCH_ASSOC);
+                    $resultadoConsulta = $consulta->fetchAll(PDO::FETCH_ASSOC);
                     $arrayResultados = array(
                         "conteudo" => $resultadoConsulta,
                         "codigo" => 200
@@ -116,7 +116,7 @@ class ClienteModel
 
                 try{
                     $consulta->execute();
-                    $resultadoConsulta = $consulta->fetch(PDO::FETCH_ASSOC);
+                    $resultadoConsulta = $consulta->fetchAll(PDO::FETCH_ASSOC);
                     $arrayResultados = array(
                         "conteudo" => $resultadoConsulta,
                         "codigo" => 200
@@ -138,7 +138,7 @@ class ClienteModel
 
                 try{
                     $consulta->execute();
-                    $resultadoConsulta = $consulta->fetch(PDO::FETCH_ASSOC);
+                    $resultadoConsulta = $consulta->fetchAll(PDO::FETCH_ASSOC);
                     $arrayResultados = array(
                         "conteudo" => $resultadoConsulta,
                         "codigo" => 200

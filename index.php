@@ -151,6 +151,18 @@ switch($url)
         echo $resposta;
         break;
 
+        
+    case '/bancorm/transacao/listar/listar':
+        $resposta = TransacaoController::listar();
+        echo $resposta;
+        break;
+
+    case '/bancorm/transacao/consultar/consultar':
+        $resposta = TransacaoController::consultar();
+        echo $resposta;
+        break;
+
+
     default:
         echo "erro 404";
         break;

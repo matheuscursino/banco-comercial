@@ -49,7 +49,7 @@ class ContaModel
 
                 try{
                     $consulta->execute();
-                    $resultadoConsulta = $consulta->fetch(PDO::FETCH_ASSOC);
+                    $resultadoConsulta = $consulta->fetchAll(PDO::FETCH_ASSOC);
                     $arrayResultados = array(
                         "conteudo" => $resultadoConsulta,
                         "codigo" => 200
@@ -73,7 +73,7 @@ class ContaModel
 
                         try{
                             $consulta->execute();
-                            $resultadoConsulta = $consulta->fetch(PDO::FETCH_ASSOC);
+                            $resultadoConsulta = $consulta->fetchAll(PDO::FETCH_ASSOC);
                             $arrayResultados = array(
                                 "conteudo" => $resultadoConsulta,
                                 "codigo" => 200
@@ -95,7 +95,7 @@ class ContaModel
                                             
                         try{
                             $consulta->execute();
-                            $resultadoConsulta = $consulta->fetch(PDO::FETCH_ASSOC);
+                            $resultadoConsulta = $consulta->fetchAll(PDO::FETCH_ASSOC);
                             $arrayResultados = array(
                                 "conteudo" => $resultadoConsulta,
                                 "codigo" => 200
@@ -117,7 +117,7 @@ class ContaModel
                                             
                         try{
                             $consulta->execute();
-                            $resultadoConsulta = $consulta->fetch(PDO::FETCH_ASSOC);
+                            $resultadoConsulta = $consulta->fetchAll(PDO::FETCH_ASSOC);
                             $arrayResultados = array(
                                 "conteudo" => $resultadoConsulta,
                                 "codigo" => 200
@@ -142,7 +142,7 @@ class ContaModel
 
                         try{
                             $consulta->execute();
-                            $resultadoConsulta = $consulta->fetch(PDO::FETCH_ASSOC);
+                            $resultadoConsulta = $consulta->fetchAll(PDO::FETCH_ASSOC);
                             $arrayResultados = array(
                                 "conteudo" => $resultadoConsulta,
                                 "codigo" => 200
@@ -164,7 +164,7 @@ class ContaModel
                                             
                         try{
                             $consulta->execute();
-                            $resultadoConsulta = $consulta->fetch(PDO::FETCH_ASSOC);
+                            $resultadoConsulta = $consulta->fetchAll(PDO::FETCH_ASSOC);
                             $arrayResultados = array(
                                 "conteudo" => $resultadoConsulta,
                                 "codigo" => 200
@@ -186,7 +186,7 @@ class ContaModel
                                             
                         try{
                             $consulta->execute();
-                            $resultadoConsulta = $consulta->fetch(PDO::FETCH_ASSOC);
+                            $resultadoConsulta = $consulta->fetchAll(PDO::FETCH_ASSOC);
                             $arrayResultados = array(
                                 "conteudo" => $resultadoConsulta,
                                 "codigo" => 200
@@ -199,17 +199,17 @@ class ContaModel
                             );
                             return $arrayResultados;
                         }
-                    }
+                }
             case 4: //consulta por cpf
                 $sql = "SELECT * FROM contas WHERE con_dono = ?";
-            
+                
                 $consulta = $this->conexao->prepare($sql);
-            
+                
                 $consulta->bindValue(1,$model->cpfDono);
-            
+                
                 try {
                     $consulta->execute();
-                    $resultadoConsulta = $consulta->fetch(PDO::FETCH_ASSOC);
+                    $resultadoConsulta = $consulta->fetchAll(PDO::FETCH_ASSOC);
                     $arrayResultados = array(
                         "conteudo" => $resultadoConsulta,
                         "codigo" => 200

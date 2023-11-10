@@ -44,6 +44,49 @@ class TransacaoController {
         
         return $json;
     }
+
+    public static function listar(){
+        include 'Controller/util.controller.php';
+        include 'Model/transacao.model.php';
+
+        $model = new TransacaoModel();
+
+        $array = $model->listar($model);
+
+        $arrayConteudo = $array["conteudo"];
+        $valorCodigo = $array["codigo"];
+
+        $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+        return $json;
+    }
+
+    public static function consultar(){
+        include 'Controller/util.controller.php';
+        include 'Model/transacao.model.php';
+
+        $model = new TransacaoModel();
+
+        $tipoConsulta = $_POST["tipoConsulta"];
+
+        switch($tipoConsulta){
+            case 1:
+                $model->idTransacao = $_POST["idTransacao"];
+                $model->tipoConsulta = $tipoConsulta;
+
+                $array = $model->consultar($model, $tipoConsulta);
+                $arrayConteudo = $array["conteudo"];
+                $valorCodigo = $array["codigo"];
+
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+                return $json;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+        }
+    }
 }
 
 ?>
