@@ -66,3 +66,20 @@ CREATE TABLE transacoes(
     FOREIGN KEY (tra_contaRemetente) REFERENCES contas (con_id)
 )
 ```
+
+STORED PROCEDURES CriarTransacao:
+```sql
+DELIMITER //
+
+CREATE PROCEDURE CriarTransacao(IN valor DECIMAL(8,2), IN idDestinatario INT, IN idRemetente INT)
+BEGIN
+    INSERT INTO transacoes (tra_contaRemetente, tra_contaDestinataria, tra_valor) 
+    VALUES (idRemetente, idDestinatario, valor);
+
+    UPDATE contas SET con_saldo = con_saldo - valor WHERE con_id = idRemetente;
+    UPDATE contas SET con_saldo = con_saldo + valor WHERE con_id = idDestinatario;
+END //
+
+DELIMITER ;
+
+```
