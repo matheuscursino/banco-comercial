@@ -3,10 +3,10 @@ var all = document.getElementById("all");
 
 function consultar(tipoConsulta) {
   conteudo.style.display = "none";
-  var idTransacao_valor = document.getElementById("idTransacao").value;
+  var idDeposito_valor = document.getElementById("idDeposito").value;
 
   let formData = new FormData();
-  formData.append("idTransacao", idTransacao_valor);
+  formData.append("idDeposito", idDeposito_valor);
   formData.append("tipoConsulta", tipoConsulta);
 
   var init = {
@@ -17,14 +17,14 @@ function consultar(tipoConsulta) {
   fetch("consultar/consultar", init)
     .then((response) => {
       response.json().then((data) => {
-        var arrayTransacao = data.message;
+        var arrayDeposito = data.message;
 
-        if (arrayTransacao.length > 0) {
+        if (arrayDeposito.length > 0) {
           conteudo.style.display = "block";
         } else {
           all.insertAdjacentHTML(
             "afterBegin",
-            "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> A transação com o ID indicado não foi encontrada! <strong> Clique <a href='/bancorm/transacao/listar'>aqui</a> para conferir o ID de todas as transações.  </div>"
+            "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> O depósito com o ID indicado não foi encontrado! <strong> Clique <a href='/bancorm/deposito/listar'>aqui</a> para conferir o ID de todos os depósitos.  </div>"
           );
         }
       });
@@ -38,25 +38,26 @@ function consultar(tipoConsulta) {
 }
 
 function atualizar(tipoAtualizacao) {
-  var idTransacao_valor = document.getElementById("idTransacao").value;
+  var idDeposito_valor = document.getElementById("idDeposito").value;
   switch (tipoAtualizacao) {
     case 1:
-      var idRemetente_valor = document.getElementById("idRemetente").value;
+      var cpfCliente_valor = document.getElementById("cpfCliente").value;
 
       let formData = new FormData();
-      formData.append("idTransacao", idTransacao_valor);
-      formData.append("idRemetente", idRemetente_valor);
+      formData.append("idDeposito", idDeposito_valor);
+      formData.append("cpfCliente", cpfCliente_valor);
       formData.append("tipoAtualizacao", tipoAtualizacao);
 
       var init = { method: "POST", body: formData };
 
       fetch("atualizar/atualizar", init).then((response) => {
+        console.log(response.json());
         if (response.status == 200) {
           console.log(response);
           conteudo.style.display = "none";
           all.insertAdjacentHTML(
             "afterBegin",
-            "<div class='notification is-success'> <button onclick='this.parentNode.remove()' class='delete'></button> O ID do remetente foi alterado com sucesso! <strong> Clique <a href='/bancorm/transacao/consultar'>aqui</a> para verificar.  </div>"
+            "<div class='notification is-success'> <button onclick='this.parentNode.remove()' class='delete'></button> O CPF do cliente foi alterado com sucesso! <strong> Clique <a href='/bancorm/deposito/consultar'>aqui</a> para verificar.  </div>"
           );
         } else {
           all.insertAdjacentHTML(
@@ -67,12 +68,11 @@ function atualizar(tipoAtualizacao) {
       });
       break;
     case 2:
-      var idDestinatario_valor =
-        document.getElementById("idDestinatario").value;
+      var idConta_valor = document.getElementById("idConta").value;
 
       let formData2 = new FormData();
-      formData2.append("idTransacao", idTransacao_valor);
-      formData2.append("idDestinatario", idDestinatario_valor);
+      formData2.append("idDeposito", idDeposito_valor);
+      formData2.append("idConta", idConta_valor);
       formData2.append("tipoAtualizacao", tipoAtualizacao);
 
       var init2 = { method: "POST", body: formData2 };
@@ -82,7 +82,7 @@ function atualizar(tipoAtualizacao) {
           conteudo.style.display = "none";
           all.insertAdjacentHTML(
             "afterBegin",
-            "<div class='notification is-success'> <button onclick='this.parentNode.remove()' class='delete'></button> O ID do destinatario foi alterado com sucesso! <strong> Clique <a href='/bancorm/transacao/consultar'>aqui</a> para verificar.  </div>"
+            "<div class='notification is-success'> <button onclick='this.parentNode.remove()' class='delete'></button> O ID da conta foi alterado com sucesso! <strong> Clique <a href='/bancorm/deposito/consultar'>aqui</a> para verificar.  </div>"
           );
         } else {
           console.log(response.json());
@@ -94,12 +94,11 @@ function atualizar(tipoAtualizacao) {
       });
       break;
     case 3:
-      var valorTransacao_valor =
-        document.getElementById("valorTransacao").value;
+      var valorDeposito_valor = document.getElementById("valorDeposito").value;
 
       let formData3 = new FormData();
-      formData3.append("idTransacao", idTransacao_valor);
-      formData3.append("valorTransacao", valorTransacao_valor);
+      formData3.append("idDeposito", idDeposito_valor);
+      formData3.append("valorDeposito", valorDeposito_valor);
       formData3.append("tipoAtualizacao", tipoAtualizacao);
 
       var init2 = { method: "POST", body: formData2 };
@@ -109,7 +108,7 @@ function atualizar(tipoAtualizacao) {
           conteudo.style.display = "none";
           all.insertAdjacentHTML(
             "afterBegin",
-            "<div class='notification is-success'> <button onclick='this.parentNode.remove()' class='delete'></button> O valor da transação foi alterado com sucesso! <strong> Clique <a href='/bancorm/transacao/consultar'>aqui</a> para verificar. </div>"
+            "<div class='notification is-success'> <button onclick='this.parentNode.remove()' class='delete'></button> O valor do depósito foi alterado com sucesso! <strong> Clique <a href='/bancorm/deposito/consultar'>aqui</a> para verificar. </div>"
           );
         } else {
           console.log(response.json());
@@ -119,7 +118,6 @@ function atualizar(tipoAtualizacao) {
           );
         }
       });
-      break;
       break;
   }
 }

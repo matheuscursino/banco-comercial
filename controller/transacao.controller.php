@@ -71,7 +71,6 @@ class TransacaoController {
         switch($tipoConsulta){
             case 1:
                 $model->idTransacao = $_POST["idTransacao"];
-                $model->tipoConsulta = $tipoConsulta;
 
                 $array = $model->consultar($model, $tipoConsulta);
                 $arrayConteudo = $array["conteudo"];
@@ -81,7 +80,6 @@ class TransacaoController {
                 return $json;
             case 2:
                 $model->idRemetente = $_POST["idRemetente"];
-                $model->tipoConsulta = $tipoConsulta;
 
                 $array = $model->consultar($model, $tipoConsulta);
                 $arrayConteudo = $array["conteudo"];
@@ -91,7 +89,6 @@ class TransacaoController {
                 return $json;
             case 3:
                 $model->idDestinatario = $_POST["idDestinatario"];
-                $model->tipoConsulta = $tipoConsulta;
 
                 $array = $model->consultar($model, $tipoConsulta);
                 $arrayConteudo = $array["conteudo"];

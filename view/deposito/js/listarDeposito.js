@@ -26,7 +26,7 @@ function listar() {
           box.style.display = "none";
           all.insertAdjacentHTML(
             "afterBegin",
-            "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Não há transações no sistema! <strong> Clique <a href='/bancorm/transacao/incluir'>aqui</a> para incluir transações.  </div>"
+            "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Não há depósitos no sistema! <strong> Clique <a href='/bancorm/deposito/incluir'>aqui</a> para incluir depósitos.  </div>"
           );
         }
       });

@@ -62,15 +62,116 @@ class DepositoController{
     }
 
     public static function consultar(){
-        
+        include 'Controller/util.controller.php';
+        include 'Model/deposito.model.php';
+
+        $model = new DepositoModel();
+
+        $tipoConsulta = $_POST["tipoConsulta"];
+
+        switch($tipoConsulta){
+            case 1:
+                $model->idDeposito = $_POST["idDeposito"];
+
+                $array = $model->consultar($model, $tipoConsulta);
+                $arrayConteudo = $array["conteudo"];
+                $valorCodigo = $array["codigo"];
+
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+                return $json;
+            case 2:
+                $model->cpfCliente = $_POST["cpfCliente"];
+
+                $array = $model->consultar($model, $tipoConsulta);
+                $arrayConteudo = $array["conteudo"];
+                $valorCodigo = $array["codigo"];
+
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+                return $json;
+            case 3:
+                $model->idConta = $_POST["idConta"];
+
+                $array = $model->consultar($model, $tipoConsulta);
+                $arrayConteudo = $array["conteudo"];
+                $valorCodigo = $array["codigo"];
+
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+                return $json;
+            case 4:
+                $model->valorDeposito = $_POST["valorDeposito"];
+                $model->operador = $_POST["operador"];
+
+
+                $array = $model->consultar($model, $tipoConsulta);
+                $arrayConteudo = $array["conteudo"];
+                $valorCodigo = $array["codigo"];
+
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+                return $json;
+        }
     }
 
     public static function atualizar(){
-        
+        include 'Controller/util.controller.php';
+        include 'Model/deposito.model.php';
+
+        $model = new DepositoModel();
+
+        $tipoAtualizacao = $_POST["tipoAtualizacao"];
+
+        switch($tipoAtualizacao){
+            case 1:
+                $model->idDeposito = $_POST["idDeposito"];
+                $model->cpfCliente = $_POST["cpfCliente"];
+
+                $array = $model->atualizar($model, $tipoAtualizacao);
+
+                $arrayConteudo = $array["conteudo"];
+                $valorCodigo = $array["codigo"];
+
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+                return $json;
+            case 2:
+                $model->idDeposito = $_POST["idDeposito"];
+                $model->idConta = $_POST["idConta"];
+
+                $array = $model->atualizar($model, $tipoAtualizacao);
+
+                $arrayConteudo = $array["conteudo"];
+                $valorCodigo = $array["codigo"];
+
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+                return $json;
+            case 3:
+                $model->idDeposito = $_POST["idDeposito"];
+                $model->valorDeposito = $_POST["valorDeposito"];
+
+                $array = $model->atualizar($model, $tipoAtualizacao);
+
+                $arrayConteudo = $array["conteudo"];
+                $valorCodigo = $array["codigo"];
+
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+                return $json;
+        }
+
     }
 
     public static function deletar(){
+        include 'Controller/util.controller.php';
+        include 'Model/deposito.model.php';
+
+        $model = new DepositoModel();
+
+        $model->idDeposito = $_POST["idDeposito"];
+
+        $array = $model->deletar($model);
+
+        $arrayConteudo = $array["conteudo"];
+        $valorCodigo = $array["codigo"];
         
+        $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+        return $json;
     }
 
 
