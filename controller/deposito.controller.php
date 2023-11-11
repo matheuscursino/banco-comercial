@@ -46,7 +46,19 @@ class DepositoController{
     }
 
     public static function listar(){
-        
+        include 'Controller/util.controller.php';
+        include 'Model/deposito.model.php';
+
+        $model = new DepositoModel();
+
+        $array = $model->listar();
+
+        $arrayConteudo = $array["conteudo"];
+        $valorCodigo = $array["codigo"];
+
+        $resposta = UtilController::json_response($valorCodigo, $arrayConteudo); 
+
+        return $resposta;
     }
 
     public static function consultar(){

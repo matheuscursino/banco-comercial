@@ -36,7 +36,7 @@ class TransacaoModel{
 
     }
 
-    public function listar(TransacaoModel $model){
+    public function listar(){
         $sql = "SELECT * FROM transacoes";
 
         $consulta = $this->conexao->prepare($sql);

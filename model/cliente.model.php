@@ -59,7 +59,7 @@ class ClienteModel
         }
     }
 
-    public function listar(ClienteModel $model){
+    public function listar(){
         $sql = "SELECT * FROM clientes";
 
         $consulta = $this->conexao->prepare($sql);

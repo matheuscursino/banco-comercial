@@ -51,7 +51,7 @@ class TransacaoController {
 
         $model = new TransacaoModel();
 
-        $array = $model->listar($model);
+        $array = $model->listar();
 
         $arrayConteudo = $array["conteudo"];
         $valorCodigo = $array["codigo"];

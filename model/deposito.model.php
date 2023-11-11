@@ -33,6 +33,28 @@ class DepositoModel{
             return $arrayResultados;
         }
     }
+
+    public function listar(){
+        $sql = "SELECT * FROM depositos";
+
+        $consulta = $this->conexao->prepare($sql);
+
+        try{
+            $consulta->execute();
+            $resultadosConsulta = $consulta->fetchAll(PDO::FETCH_ASSOC);
+            $arrayResultados = array(
+                "conteudo" => $resultadosConsulta,
+                "codigo" => 200
+            );
+            return $arrayResultados;
+        }catch(PDOException $e){
+            $arrayResultados = array(
+                "conteudo" => null,
+                "codigo" => 400
+            );
+            return $arrayResultados;
+        }
+    }
 }
 
 ?>

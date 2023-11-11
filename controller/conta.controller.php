@@ -97,7 +97,7 @@ class ContaController
 
         $model = new ContaModel();
 
-        $array = $model->listar($model);
+        $array = $model->listar();
         $arrayConteudo = $array["conteudo"];
         $valorCodigo = $array["codigo"];
 

@@ -226,7 +226,7 @@ class ContaModel
 
     }
 
-    public function listar(ContaModel $model){
+    public function listar(){
         $sql = "SELECT * FROM contas";
 
         $consulta = $this->conexao->prepare($sql);

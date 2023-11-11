@@ -70,7 +70,7 @@ class ClienteController
 
         $model = new ClienteModel();
 
-        $array = $model->listar($model);
+        $array = $model->listar();
 
         $arrayConteudo = $array["conteudo"];
         $valorCodigo = $array["codigo"];
