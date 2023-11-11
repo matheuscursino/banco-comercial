@@ -129,6 +129,52 @@ class TransacaoController {
         $json = UtilController::json_response($valorCodigo, $arrayConteudo);
         return $json;
     }
+
+    public static function atualizar(){
+        include 'Controller/util.controller.php';
+        include 'Model/transacao.model.php';
+
+        $model = new TransacaoModel();
+
+        $tipoAtualizacao = $_POST["tipoAtualizacao"];
+
+        switch($tipoAtualizacao){
+            case 1:
+                $model->idTransacao = $_POST["idTransacao"];
+                $model->idRemetente = $_POST["idRemetente"];
+
+                $array = $model->atualizar($model, $tipoAtualizacao);
+
+                $arrayConteudo = $array["conteudo"];
+                $valorCodigo = $array["codigo"];
+
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+                return $json;
+            case 2:
+                $model->idTransacao = $_POST["idTransacao"];
+                $model->idDestinatario = $_POST["idDestinatario"];
+
+                $array = $model->atualizar($model, $tipoAtualizacao);
+
+                $arrayConteudo = $array["conteudo"];
+                $valorCodigo = $array["codigo"];
+
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+                return $json;
+            case 3:
+                $model->idTransacao = $_POST["idTransacao"];
+                $model->valorTransacao = $_POST["valorTransacao"];
+
+                $array = $model->atualizar($model, $tipoAtualizacao);
+
+                $arrayConteudo = $array["conteudo"];
+                $valorCodigo = $array["codigo"];
+
+                $json = UtilController::json_response($valorCodigo, $arrayConteudo);
+                return $json;
+        }
+
+    }
 }
 
 ?>

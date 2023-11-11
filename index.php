@@ -167,6 +167,11 @@ switch($url)
         echo $resposta;
         break;
 
+    case '/bancorm/transacao/atualizar/atualizar':
+        $resposta = TransacaoController::atualizar();
+        echo $resposta;
+        break;
+
 
     default:
         echo "erro 404";

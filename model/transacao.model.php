@@ -218,6 +218,77 @@ class TransacaoModel{
             return $arrayResultados;
         }
     }
+
+    public function atualizar(TransacaoModel $model, $tipoAtualizacao){
+        switch($tipoAtualizacao){
+            case 1:
+                $sql = "UPDATE transacoes SET tra_contaRemetente = ? WHERE tra_id = ?";
+
+                $consulta = $this->conexao->prepare($sql);
+
+                $consulta->bindValue(1, $model->idRemetente);
+                $consulta->bindValue(2, $model->idTransacao);
+
+                try{
+                    $consulta->execute();
+                    $arrayResultados = array(
+                        "conteudo" => null,
+                        "codigo" => 200
+                    );
+                    return $arrayResultados;
+                }catch(PDOException $e){
+                    $arrayResultados = array(
+                        "conteudo" => null,
+                        "codigo" => 400
+                    );
+                    return $arrayResultados;
+                }
+            case 2:
+                $sql = "UPDATE transacoes SET tra_contaDestinataria = ? WHERE tra_id = ?";
+
+                $consulta = $this->conexao->prepare($sql);
+
+                $consulta->bindValue(1, $model->idDestinatario);
+                $consulta->bindValue(2, $model->idTransacao);
+
+                try{
+                    $consulta->execute();
+                    $arrayResultados = array(
+                        "conteudo" => null,
+                        "codigo" => 200
+                    );
+                    return $arrayResultados;
+                }catch(PDOException $e){
+                    $arrayResultados = array(
+                        "conteudo" => null,
+                        "codigo" => 400
+                    );
+                    return $arrayResultados;
+                }
+            case 3:
+                $sql = "UPDATE transacoes SET tra_valor = ? WHERE tra_id = ?";
+
+                $consulta = $this->conexao->prepare($sql);
+
+                $consulta->bindValue(1, $model->valorTransacao);
+                $consulta->bindValue(2, $model->idRemetente);
+
+                try{
+                    $consulta->execute();
+                    $arrayResultados = array(
+                        "conteudo" => null,
+                        "codigo" => 200
+                    );
+                    return $arrayResultados;
+                }catch(PDOException $e){
+                    $arrayResultados = array(
+                        "conteudo" => null,
+                        "codigo" => 400
+                    );
+                    return $arrayResultados;
+                }
+        }
+    }
 }
 
 ?>

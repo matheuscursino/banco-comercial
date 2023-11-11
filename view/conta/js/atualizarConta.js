@@ -82,7 +82,7 @@ function atualizar(tipoAtualizacao) {
             conteudo.style.display = "none";
             all.insertAdjacentHTML(
               "afterBegin",
-              "<div class='notification is-success'> <button onclick='this.parentNode.remove()' class='delete'></button> O telefone do cliente foi alterado com sucesso! <strong> Clique <a href='/bancorm/cliente/consultar'>aqui</a> para verificar o seu novo nome.  </div>"
+              "<div class='notification is-success'> <button onclick='this.parentNode.remove()' class='delete'></button> A data de criação da conta foi alterado com sucesso! <strong> Clique <a href='/bancorm/contacorrente/consultar'>aqui</a> para verificar.  </div>"
             );
           } else {
             console.log(response.json());

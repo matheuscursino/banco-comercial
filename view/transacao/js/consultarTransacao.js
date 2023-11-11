@@ -95,7 +95,7 @@ function consultar(tipoConsulta) {
         } else {
           all.insertAdjacentHTML(
             "afterBegin",
-            "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Não foi possível consultar essa conta. <strong> Adicione <a href='/bancorm/contacorrente/incluir'>aqui</a> para adicionar novas contas.</strong</div>"
+            "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> Não foi possível consultar essa transação. <strong> Adicione <a href='/bancorm/transacao/incluir'>aqui</a> para adicionar novas transações.</strong</div>"
           );
         }
       })

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Atualizar transação</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../view/public/images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../view/public/images/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../view/public/images/site.webmanifest" />
+    <link
+      rel="stylesheet"
+      href="../view/transacao/css/atualizarTransacao.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar is-light">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/bancorm">
+          <img
+            src="../view/public/images/favicon-32x32.png"
+            width="32"
+            height="32"
+          />
+        </a>
+        <div
+          id="burger"
+          class="navbar-burger"
+          data-target="navbarExampleTransparentExample"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <div id="navbarExampleTransparentExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="/bancorm"> Home </a>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link"> Cliente </a>
+            <div class="navbar-dropdown is-boxed">
+              <a class="navbar-item" href="/bancorm/cliente/incluir">
+                Incluir
+              </a>
+              <a class="navbar-item" href="/bancorm/cliente/atualizar">
+                Atualizar
+              </a>
+              <a class="navbar-item" href="/bancorm/cliente/consultar">
+                Consultar
+              </a>
+              <a class="navbar-item" href="/bancorm/cliente/listar"> Listar </a>
+              <a class="navbar-item" href="/bancorm/cliente/deletar">
+                Deletar
+              </a>
+            </div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link"> Conta corrente </a>
+            <div class="navbar-dropdown is-boxed">
+              <a class="navbar-item" href="/bancorm/contacorrente/incluir">
+                Incluir
+              </a>
+              <a class="navbar-item" href="/bancorm/contacorrente/atualizar">
+                Atualizar
+              </a>
+              <a class="navbar-item" href="/bancorm/contacorrente/consultar">
+                Consultar
+              </a>
+              <a class="navbar-item" href="/bancorm/contacorrente/listar">
+                Listar
+              </a>
+              <a class="navbar-item" href="/bancorm/contacorrente/deletar">
+                Deletar
+              </a>
+            </div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link"> Transação </a>
+            <div class="navbar-dropdown is-boxed">
+              <a class="navbar-item" href="/bancorm/transacao/incluir">
+                Incluir
+              </a>
+              <a class="navbar-item" href="/bancorm/transacao/atualizar">
+                Atualizar
+              </a>
+              <a class="navbar-item" href="/bancorm/transacao/consultar">
+                Consultar
+              </a>
+              <a class="navbar-item" href="/bancorm/transacao/listar">
+                Listar
+              </a>
+              <a class="navbar-item" href="/bancorm/transacao/deletar">
+                Deletar
+              </a>
+            </div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link"> Depósito </a>
+            <div class="navbar-dropdown is-boxed">
+              <a class="navbar-item" href="/bancorm/deposito/incluir">
+                Incluir
+              </a>
+              <a class="navbar-item" href="/bancorm/deposito/atualizar">
+                Atualizar
+              </a>
+              <a class="navbar-item" href="/bancorm/deposito/consultar">
+                Consultar
+              </a>
+              <a class="navbar-item" href="/bancorm/deposito/listar">
+                Listar
+              </a>
+              <a class="navbar-item" href="/bancorm/deposito/deletar">
+                Deletar
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div id="all" class="content">
+      <h1>ATUALIZAR TRANSAÇÃO</h1>
+      <div class="box">
+        <form class="form">
+          <div class="field">
+            <label class="label">ID da transação que será atualizada: </label>
+            <div class="control">
+              <input
+                class="input"
+                placeholder="Digite o ID da transacao aqui..."
+                type="number"
+                name="idTransacao"
+                id="idTransacao"
+              />
+            </div>
+          </div>
+          <button onclick="consultar(1)" class="button is-link">Salvar</button>
+        </form>
+      </div>
+      <div id="conteudo">
+        <h2>Atualizar ID remetente</h2>
+        <div class="box">
+          <form class="form">
+            <div class="field">
+              <label class="label">Novo ID do remetente: </label>
+              <div class="control">
+                <input
+                  class="input"
+                  placeholder="Digite o novo ID do remetente aqui..."
+                  type="number"
+                  name="idRemetente"
+                  id="idRemetente"
+                />
+              </div>
+            </div>
+            <button onclick="atualizar(1)" class="button is-danger">
+              Atualizar
+            </button>
+          </form>
+        </div>
+        <h2>Atualizar ID destinatario</h2>
+        <div class="box">
+          <form class="form">
+            <div class="field">
+              <label class="label">Novo ID do destinatario: </label>
+              <div class="control">
+                <input
+                  class="input"
+                  placeholder="Digite o novo ID do destinatario aqui..."
+                  type="number"
+                  name="idDestinatario"
+                  id="idDestinatario"
+                />
+              </div>
+            </div>
+            <button onclick="atualizar(2)" class="button is-danger">
+              Atualizar
+            </button>
+          </form>
+        </div>
+        <h2>Atualizar valor da transação</h2>
+        <div class="box">
+          <form class="form">
+            <div class="field">
+              <label class="label">Novo valor da transação: </label>
+              <div class="control">
+                <input
+                  class="input"
+                  placeholder="Digite o novo valor da
+                transação aqui..."
+                  type="number"
+                  name="valorTransacao"
+                  id="valorTransacao"
+                />
+              </div>
+            </div>
+            <button onclick="atualizar(2)" class="button is-danger">
+              Atualizar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="../view/transacao/js/atualizarTransacao.js"></script>
+  <script src="../view/public/js/common.js"></script>
+</html>

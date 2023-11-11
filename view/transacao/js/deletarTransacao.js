@@ -33,7 +33,7 @@ function consultar(tipoConsulta) {
       } else {
         all.insertAdjacentHTML(
           "afterBegin",
-          "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> A conta com o ID indicado não foi encontrada! <strong> Clique <a href='/bancorm/conta/listar'>aqui</a> para conferir o ID de todas as contas.  </div>"
+          "<div class='notification is-danger'> <button onclick='this.parentNode.remove()' class='delete'></button> A transação com o ID indicado não foi encontrada! <strong> Clique <a href='/bancorm/transacao/listar'>aqui</a> para conferir o ID de todas as transações.  </div>"
         );
       }
     })
