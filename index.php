@@ -3,6 +3,7 @@
 include 'Controller/cliente.controller.php';
 include 'Controller/conta.controller.php';
 include 'Controller/transacao.controller.php';
+include 'Controller/deposito.controller.php';
 
 $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
@@ -12,7 +13,7 @@ switch($url)
         include "View/home/html/home.html";
         break;
     
-    // cliente views
+    /////////
 
     case '/bancorm/cliente':
         ClienteController::home_mostrar();
@@ -38,7 +39,7 @@ switch($url)
         ClienteController::atualizar_mostrar();
         break;
 
-    // cliente métodos
+    /////////
 
     case '/bancorm/cliente/incluir/salvar':
         $resposta = ClienteController::incluir();
@@ -64,7 +65,7 @@ switch($url)
         echo $resposta;
         break;
 
-    // conta views
+    /////////
 
     case '/bancorm/contacorrente':
         ContaController::home_mostrar();
@@ -90,7 +91,7 @@ switch($url)
         ContaController::deletar_mostrar();
         break;
 
-    //conta controllers
+    /////////
 
     case '/bancorm/contacorrente/incluir/incluir':
         $resposta = ContaController::incluir();
@@ -118,7 +119,7 @@ switch($url)
         break;
     
 
-    // transacao views
+    /////////
 
     case '/bancorm/transacao':
         TransacaoController::home_mostrar();
@@ -169,6 +170,60 @@ switch($url)
 
     case '/bancorm/transacao/atualizar/atualizar':
         $resposta = TransacaoController::atualizar();
+        echo $resposta;
+        break;
+
+    /////////
+
+    case '/bancorm/deposito':
+        DepositoController::home_mostrar();
+        break;
+
+    case '/bancorm/deposito/incluir':
+        DepositoController::incluir_mostrar();
+        break;
+
+    case '/bancorm/deposito/consultar':
+        DepositoController::consultar_mostrar();
+        break;
+    
+    case '/bancorm/deposito/atualizar':
+        DepositoController::atualizar_mostrar();
+        break;
+
+    case '/bancorm/deposito/listar':
+        DepositoController::listar_mostrar();
+        break;
+
+    case '/bancorm/deposito/deletar':
+        DepositoController::deletar_mostrar();
+        break;
+
+    /////////
+
+    case '/bancorm/deposito/incluir/salvar':
+        $resposta = DepositoController::incluir();
+        echo $resposta;
+        break;
+
+        
+    case '/bancorm/deposito/listar/listar':
+        $resposta = DepositoController::listar();
+        echo $resposta;
+        break;
+
+    case '/bancorm/deposito/consultar/consultar':
+        $resposta = DepositoController::consultar();
+        echo $resposta;
+        break;
+
+    case '/bancorm/deposito/deletar/apagar':
+        $resposta = DepositoController::deletar();
+        echo $resposta;
+        break;
+
+    case '/bancorm/deposito/atualizar/atualizar':
+        $resposta = DepositoController::atualizar();
         echo $resposta;
         break;
 

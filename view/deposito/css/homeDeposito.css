@@ -1,0 +1,33 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Arial";
+}
+
+h1 {
+  margin-top: 20px;
+}
+
+.content {
+  text-align: center;
+}
+
+button {
+  margin: 10px;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  background-color: darkblue;
+  cursor: pointer;
+  width: 300px;
+}
+
+@media screen and (max-width: 1024px) {
+  .navbar-dropdown .is-active {
+    display: block;
+  }
+  .navbar-dropdown:not(.is-active) {
+    display: none;
+  }
+}
