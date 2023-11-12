@@ -4,7 +4,6 @@ var closeElements = document.querySelectorAll(
   ".modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button"
 );
 var tabela = document.getElementById("tabela");
-var contador;
 
 closeElements.forEach((elemento) => {
   elemento.addEventListener("click", () => {
